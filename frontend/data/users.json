@@ -1,0 +1,180 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@FashionStore.vn",
+      "name": "Nguyễn Minh Anh",
+      "avatar": "/placeholder.svg?height=100&width=100",
+      "role": "admin",
+      "permissions": [
+        "products.view",
+        "products.create",
+        "products.edit",
+        "products.delete",
+        "orders.view",
+        "orders.edit",
+        "orders.cancel",
+        "orders.process",
+        "users.view",
+        "users.create",
+        "users.edit",
+        "users.delete",
+        "inventory.view",
+        "inventory.edit",
+        "inventory.reports",
+        "analytics.view",
+        "analytics.export",
+        "support.view",
+        "support.respond",
+        "promotions.view",
+        "promotions.create",
+        "promotions.edit",
+        "suppliers.view",
+        "suppliers.manage"
+      ],
+      "department": "management",
+      "isActive": true,
+      "createdAt": "2023-01-15T08:00:00Z",
+      "lastLogin": "2024-01-20T14:30:00Z"
+    },
+    {
+      "id": "2",
+      "email": "operations@FashionStore.vn",
+      "name": "Trần Văn Hùng",
+      "avatar": "/placeholder.svg?height=100&width=100",
+      "role": "staff_operations",
+      "permissions": [
+        "orders.view",
+        "orders.edit",
+        "orders.process",
+        "promotions.view",
+        "promotions.create",
+        "promotions.edit",
+        "products.view"
+      ],
+      "department": "operations",
+      "isActive": true,
+      "createdAt": "2023-03-10T09:00:00Z",
+      "lastLogin": "2024-01-20T16:45:00Z"
+    },
+    {
+      "id": "3",
+      "email": "support@FashionStore.vn",
+      "name": "Lê Thị Mai",
+      "avatar": "/placeholder.svg?height=100&width=100",
+      "role": "staff_customer_service",
+      "permissions": [
+        "orders.view",
+        "support.view",
+        "support.respond",
+        "users.view"
+      ],
+      "department": "customer_service",
+      "isActive": true,
+      "createdAt": "2023-02-20T10:00:00Z",
+      "lastLogin": "2024-01-20T15:20:00Z"
+    },
+    {
+      "id": "4",
+      "email": "inventory@FashionStore.vn",
+      "name": "Phạm Đức Nam",
+      "avatar": "/placeholder.svg?height=100&width=100",
+      "role": "staff_inventory",
+      "permissions": [
+        "inventory.view",
+        "inventory.edit",
+        "inventory.reports",
+        "products.view",
+        "products.edit",
+        "suppliers.view"
+      ],
+      "department": "inventory",
+      "isActive": true,
+      "createdAt": "2023-04-05T08:30:00Z",
+      "lastLogin": "2024-01-20T13:15:00Z"
+    },
+    {
+      "id": "5",
+      "email": "manager@FashionStore.vn",
+      "name": "Hoàng Thị Lan",
+      "avatar": "/placeholder.svg?height=100&width=100",
+      "role": "staff_manager",
+      "permissions": [
+        "users.view",
+        "users.edit",
+        "analytics.view",
+        "analytics.export",
+        "support.view",
+        "suppliers.view",
+        "suppliers.manage",
+        "orders.view"
+      ],
+      "department": "management",
+      "isActive": true,
+      "createdAt": "2023-01-25T09:15:00Z",
+      "lastLogin": "2024-01-20T17:00:00Z"
+    },
+    {
+      "id": "6",
+      "email": "supplier1@example.com",
+      "name": "Công ty TNHH Thời Trang ABC",
+      "avatar": "/placeholder.svg?height=100&width=100",
+      "role": "supplier",
+      "permissions": ["products.view", "inventory.view"],
+      "department": "external",
+      "isActive": true,
+      "createdAt": "2023-05-10T11:00:00Z",
+      "lastLogin": "2024-01-19T14:30:00Z"
+    },
+    {
+      "id": "7",
+      "email": "customer@example.com",
+      "name": "Nguyễn Văn Khách",
+      "avatar": "/placeholder.svg?height=100&width=100",
+      "role": "customer",
+      "permissions": [],
+      "department": "customer",
+      "isActive": true,
+      "createdAt": "2023-06-15T12:00:00Z",
+      "lastLogin": "2024-01-20T18:45:00Z"
+    }
+  ],
+  "departments": [
+    {
+      "id": "management",
+      "name": "Ban Giám Đốc",
+      "description": "Quản lý tổng thể công ty",
+      "managerId": "1"
+    },
+    {
+      "id": "operations",
+      "name": "Phòng Vận Hành",
+      "description": "Xử lý đơn hàng và sự kiện khuyến mãi",
+      "managerId": "5"
+    },
+    {
+      "id": "customer_service",
+      "name": "Phòng Chăm Sóc Khách Hàng",
+      "description": "Hỗ trợ và giải đáp thắc mắc khách hàng",
+      "managerId": "5"
+    },
+    {
+      "id": "inventory",
+      "name": "Phòng Kho Vận",
+      "description": "Quản lý kho hàng và nhập xuất",
+      "managerId": "5"
+    },
+    {
+      "id": "external",
+      "name": "Đối Tác Bên Ngoài",
+      "description": "Nhà cung cấp và đối tác",
+      "managerId": "1"
+    },
+    {
+      "id": "customer",
+      "name": "Khách Hàng",
+      "description": "Khách hàng sử dụng dịch vụ",
+      "managerId": null
+    }
+  ]
+}
