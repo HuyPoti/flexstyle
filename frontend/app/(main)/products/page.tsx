@@ -19,13 +19,14 @@ async function getCategories() {
 export default async function ProductsCarousel({
   searchParams,
 }: {
-  searchParams: { [key: string]: string };
+  searchParams: Promise<{ [key: string]: string }>;
 }) {
   const products = await getProducts();
   const categories = await getCategories();
+  const { query } = await searchParams;
 
   // Lấy giá trị searchQuery từ URL
-  const initialQuery = searchParams?.query || "";
+  const initialQuery = query || "";
 
   return (
     <div>

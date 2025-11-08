@@ -16,11 +16,12 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect} from "react";
 import { Save, X } from "lucide-react";
 import Product from "@/interfaces/product";
 import ProductDetail from "@/interfaces/productDetail";
 import Image from "next/image";
+import { Category } from "@/lib/types";
 
 interface ProductPopupProps {
   open: boolean;
@@ -31,6 +32,7 @@ interface ProductPopupProps {
   setSelectedSizeIndex: (index: number) => void;
   error: string | null;
   setError: (error: string | null) => void;
+  categories: Category[];
 }
 
 export default function ProductPopup({
@@ -40,6 +42,7 @@ export default function ProductPopup({
   initialData,
   selectedSizeIndex,
   setSelectedSizeIndex,
+  categories,
   // error,
   // setError,
 }: ProductPopupProps) {
@@ -62,8 +65,8 @@ export default function ProductPopup({
   const [previews, setPreviews] = useState<(string | File)[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const sizes = ["S", "M", "L", "XL", "XXL"];
-  const { categories, loading } = useContext(CategoryContext);
   const [loadingImage, setLoading] = useState(false);
+  
   // Reset form when popup opens or closes
   useEffect(() => {
     if (open && initialData) {
@@ -223,7 +226,7 @@ export default function ProductPopup({
                   setField("DANHMUC", {
                     TenDM: selectedCat.TenDM,
                     MaDM: selectedCat.MaDM,
-                    MoTa: selectedCat.MoTa,
+                    // MoTa: selectedCat.MoTa,
                     Loai: selectedCat.Loai,
                   });
                 } else {
@@ -241,7 +244,7 @@ export default function ProductPopup({
                 <SelectValue placeholder="Chọn danh mục" />
               </SelectTrigger>
               <SelectContent className="max-h-80">
-                {!loading &&
+                {
                   Array.isArray(categories) &&
                   categories.map((cat) => (
                     <SelectItem key={cat.MaDM} value={cat.TenDM}>

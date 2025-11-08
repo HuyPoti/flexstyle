@@ -2,13 +2,20 @@
 import { createClient } from "@/lib/supabase/server";
 import ProductsPageClient from "./ProductPage";
 
+async function getCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/danhmuc`);
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  return res.json();
+}
+
+
 export default async function ProductPage() {
   const supabase = createClient();
 
   const {
     data: { session },
   } = await (await supabase).auth.getSession();
-
+  const categories = await getCategories();
   // const res = await fetch(
   //   "http://localhost:8080/api/sanpham?includeSizes=true"
   // );
@@ -31,5 +38,5 @@ export default async function ProductPage() {
   //   return product;
   // });
 
-  return <ProductsPageClient access_token={session?.access_token ?? ""} />;
+  return <ProductsPageClient access_token={session?.access_token ?? ""} categories={categories} />;
 }

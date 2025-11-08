@@ -16,11 +16,14 @@ import {
 } from "@/components/ui/select";
 import Product from "@/interfaces/product";
 import axios from "axios";
+import { Category } from "@/lib/types";
 
 export default function ProductsPageClient({
   access_token,
+  categories,
 }: {
   access_token: string;
+  categories: Category[];
 }) {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Product | null>(null);
@@ -348,6 +351,7 @@ export default function ProductsPageClient({
         initialData={editing ?? undefined}
         error={error}
         setError={setError}
+        categories={categories}
       />
 
       <ProductViewPopup
