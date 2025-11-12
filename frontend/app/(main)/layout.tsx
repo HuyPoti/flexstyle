@@ -15,6 +15,7 @@ import type { SuKienUuDai, Voucher } from "@/lib/types";
 import { OrderProvider } from "@/contexts/order-context";
 import { ThongBaoProvider } from "@/contexts/thongbao-context";
 import MessengerButton from "@/components/messenger-button";
+import Script from "next/script";
 
 async function fetchSukienuudais() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sukienuudai`, {
@@ -121,6 +122,20 @@ export default async function layout({
                     ) ?? ({} as SuKienUuDai)
                   }
                 >
+
+                  <Script
+                    strategy="afterInteractive"
+                    src="https://www.googletagmanager.com/gtag/js?id=G-CNDWTTCSR7"
+                  />
+
+                  <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CNDWTTCSR7');
+  `}
+                  </Script>
                   <Header />
                   {children}
                   <Footer />
@@ -134,7 +149,7 @@ export default async function layout({
                     }}
                   />
                   <MessengerButton />
-                  
+
                   {talkto()}
                 </SuKienUuDaiProvider>
               </ThongBaoProvider>
