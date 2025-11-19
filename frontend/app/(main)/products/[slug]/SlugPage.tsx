@@ -500,7 +500,7 @@ export default function SlugPage({
                   onClick={() =>
                     window.open(
                       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                        `https://yame.vn/products/ao-thun-pique-thoang-mat-seventy-seven-13-den-0023217`
+                        `https://flexstyle.vercel.app/products/${product.slug}`
                       )}`,
                       "_blank"
                     )
