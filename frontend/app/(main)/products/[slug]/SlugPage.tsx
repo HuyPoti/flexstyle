@@ -279,10 +279,7 @@ export default function SlugPage({
             {/* Main Image */}
             <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
               <Image
-                src={
-                  "https:" +
-                  (product.HinhAnh[selectedImageIndex] || "/placeholder.svg")
-                }
+                src={product.HinhAnh[selectedImageIndex]}
                 alt={product.TenSP}
                 fill
                 className="object-cover"
@@ -331,7 +328,7 @@ export default function SlugPage({
                     onClick={() => setSelectedImageIndex(index)}
                   >
                     <Image
-                      src={"https:" + image || "/placeholder.svg"}
+                      src={image}
                       alt={`${product.TenSP} ${index + 1}`}
                       fill
                       className="object-cover"
