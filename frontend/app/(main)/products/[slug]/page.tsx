@@ -45,7 +45,9 @@ export async function generateMetadata({
   if (!slug) return {};
   try {
     const res = await fetch(
-      `http://localhost:8080/api/sanpham/${encodeURIComponent(slug)}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/${encodeURIComponent(
+        slug
+      )}`,
       {
         cache: "no-store",
       }
@@ -59,12 +61,7 @@ export async function generateMetadata({
     const description =
       (product.MoTa && String(product.MoTa).slice(0, 160)) ||
       `Xem chi tiết ${title} trên FlexStyle`;
-    const images =
-      Array.isArray(product.HinhAnh) && product.HinhAnh.length
-        ? product.HinhAnh.map((src: string) =>
-            src.startsWith("http") ? src : `https://flexstyle.vercel.app/${src}`
-          )
-        : [`https://flexstyle.vercel.app/og-default.png`];
+    const images = product.HinhAnh[0];
 
     return {
       title,
@@ -74,10 +71,16 @@ export async function generateMetadata({
         description,
         siteName: "FlexStyle",
         type: "website",
-        url: `https://flexstyle.vercel.app/products/${encodeURIComponent(
-          slug
-        )}`,
-        images: images.map((url: string) => ({ url })),
+        url: `${
+          process.env.NEXT_PUBLIC_FRONT_END
+        }/products/${encodeURIComponent(slug)}`,
+        images: {
+          url: images,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+        locale: "vi_VN",
       },
       twitter: {
         card: "summary_large_image",
