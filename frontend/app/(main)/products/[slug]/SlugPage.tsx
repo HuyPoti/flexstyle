@@ -8,6 +8,7 @@ import { useState } from "react";
 import Image from "next/image";
 // import Head from "next/head";
 import Link from "next/link";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 import {
   Star,
   Share2,
@@ -217,34 +218,6 @@ export default function SlugPage({
     const text = `${title}\n${productUrl}`.trim();
     const wa = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
     window.open(wa, "_blank");
-  };
-
-    // helper: mở popup căn giữa màn hình (desktop) hoặc new tab (mobile)
-  const openCenteredPopup = (url: string, title = "Share", w = 600, h = 500) => {
-    // mobile xử lý: nếu window.innerWidth nhỏ thì open bình thường
-    if (window.innerWidth <= 640) {
-      window.open(url, "_blank");
-      return;
-    }
-    const left = window.screenX + (window.innerWidth - w) / 2;
-    const top = window.screenY + (window.innerHeight - h) / 2;
-    window.open(
-      url,
-      title,
-      `toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=${w}, height=${h}, top=${top}, left=${left}`
-    );
-  };
-
-  const shareToX = () => {
-    const title = product.TenSP || "";
-    // Text + URL. Bạn có thể thêm hashtags hoặc via nếu muốn:
-    // e.g. const hashtags = "FlexStyle,ThoiTrang";
-    // url: https://x.com/intent/tweet?text=...
-    const text = `${title}\n${productUrl}`.trim();
-    const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      text
-    )}`;
-    openCenteredPopup(intentUrl, "Share on X", 600, 420);
   };
 
 
@@ -533,22 +506,18 @@ export default function SlugPage({
                 />
                 Yêu thích
               </Button> */}
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="flex-1 bg-transparent"
-                  onClick={() =>
-                    window.open(
-                      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                        `https://flexstyle.vercel.app/products/${product.slug}`
-                      )}`,
-                      "_blank"
-                    )
-                  }
+              {/* --- SHARE BUTTONS (REACT-SHARE) --- */}
+                <FacebookShareButton
+                  url={productUrl}
+                  title={product.TenSP}
+                  hashtag="#FlexStyle"
+                  className="flex-1"
                 >
-                  <Share2 className="h-5 w-5 mr-2" />
-                  Chia sẻ Facebook
-                </Button>
+                  <Button variant="outline" size="lg" className="w-full bg-transparent">
+                    <Share2 className="h-5 w-5 mr-2" />
+                    Chia sẻ Facebook
+                  </Button>
+                </FacebookShareButton>
                 <Button
                   variant="outline"
                   size="lg"
@@ -577,25 +546,26 @@ export default function SlugPage({
                   </svg>
                   Chia sẻ WhatsApp
                 </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="flex-1 bg-transparent"
-                  onClick={shareToX}
+                <TwitterShareButton
+                  url={productUrl}
+                  title={product.TenSP}
+                  className="flex-1"
                 >
-                  {/* X logo simple SVG */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="18"
-                    height="18"
-                    className="mr-2"
-                    fill="currentColor"
-                  >
-                    <path d="M20.5 3.5a8 8 0 01-2.3.6c.8-.5 1.4-1.2 1.6-2.1-.8.5-1.7.8-2.7 1-1.6-1.6-4.3-1.3-5.9.6-1 .9-1.4 2.1-1.1 3.3-3-.2-5.7-1.6-7.5-3.8-.9 1.6-.4 3.5 1 4.5-.7 0-1.4-.2-2-.5v.1c0 1.7 1.2 3.2 2.8 3.5-.6.2-1.3.2-1.9.1.5 1.6 2 2.8 3.7 2.8-1.6 1.2-3.6 1.9-5.6 1.9-.4 0-.8 0-1.1-.1 2 1.3 4.4 2 6.9 2 8.2 0 12.7-6.8 12.7-12.7v-.6c.9-.7 1.6-1.6 2.1-2.6-.9.4-1.9.7-2.9.8z" />
-                  </svg>
-                  Chia sẻ X
-                </Button>
+                  <Button variant="outline" size="lg" className="w-full bg-transparent">
+                    {/* X logo simple SVG */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      className="mr-2"
+                      fill="currentColor"
+                    >
+                      <path d="M20.5 3.5a8 8 0 01-2.3.6c.8-.5 1.4-1.2 1.6-2.1-.8.5-1.7.8-2.7 1-1.6-1.6-4.3-1.3-5.9.6-1 .9-1.4 2.1-1.1 3.3-3-.2-5.7-1.6-7.5-3.8-.9 1.6-.4 3.5 1 4.5-.7 0-1.4-.2-2-.5v.1c0 1.7 1.2 3.2 2.8 3.5-.6.2-1.3.2-1.9.1.5 1.6 2 2.8 3.7 2.8-1.6 1.2-3.6 1.9-5.6 1.9-.4 0-.8 0-1.1-.1 2 1.3 4.4 2 6.9 2 8.2 0 12.7-6.8 12.7-12.7v-.6c.9-.7 1.6-1.6 2.1-2.6-.9.4-1.9.7-2.9.8z" />
+                    </svg>
+                    Chia sẻ X
+                  </Button>
+                </TwitterShareButton>
                 <Button
                   variant="outline"
                   size="lg"

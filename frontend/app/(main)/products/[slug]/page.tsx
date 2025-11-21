@@ -4,9 +4,6 @@ import type { Metadata } from "next";
 import SlugPage from "./SlugPage";
 
 // Helper: Lấy URL frontend (không cần proxy)
-const getBaseUrl = () =>
-  (process.env.NEXT_PUBLIC_FRONT_END || "").replace(/\/+$/, "") ||
-  "https://flexstyle.vercel.app";
 
 async function getRelatedProducts(slug: string) {
   const res = await fetch(
@@ -57,18 +54,27 @@ export async function generateMetadata({
     const product = json?.data;
     if (!product) return {};
 
+    const base = (process.env.NEXT_PUBLIC_FRONT_END || "https://flexstyle.vercel.app").replace(/\/+$/, "");
+
     const title = product.TenSP || "Sản phẩm FlexStyle";
     const description =
       (product.MoTa && String(product.MoTa).slice(0, 160)) ||
       `Xem chi tiết ${title} trên FlexStyle`;
 
-    const base = getBaseUrl();
+    // ----------------------------
+    // 📌 Lấy URL ảnh gốc — KHÔNG proxy
+    // ----------------------------
+    let image = product.HinhAnh?.[0] || "";
 
-    // 🔥 ẢNH GỐC - KHÔNG QUA PROXY
-    const imageUrl =
-      product.HinhAnh && product.HinhAnh[0]
-        ? product.HinhAnh[0] // trực tiếp URL YAME
-        : `${base}/default-og.jpg`;
+    // Nếu API trả ảnh không có https, tự thêm https:
+    if (image && !image.startsWith("http")) {
+      image = `https:${image}`;
+    }
+
+    // Nếu vẫn không hợp lệ -> dùng ảnh mặc định
+    if (!image.startsWith("https://")) {
+      image = `${base}/default-og.jpg`;
+    }
 
     return {
       title,
@@ -76,12 +82,12 @@ export async function generateMetadata({
       openGraph: {
         title,
         description,
-        siteName: "FlexStyle",
         type: "website",
+        siteName: "FlexStyle",
         url: `${base}/products/${encodeURIComponent(slug)}`,
         images: [
           {
-            url: imageUrl,
+            url: image,
             width: 1200,
             height: 630,
             alt: title,
@@ -93,7 +99,7 @@ export async function generateMetadata({
         card: "summary_large_image",
         title,
         description,
-        images: [imageUrl],
+        images: [image],
       },
     };
   } catch (error) {
@@ -101,6 +107,7 @@ export async function generateMetadata({
     return {};
   }
 }
+
 
 // ================================
 // 🚀 PAGE RENDER
