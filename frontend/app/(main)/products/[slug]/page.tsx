@@ -3,46 +3,40 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import SlugPage from "./SlugPage";
 
-// Helper to ensure we have a usable absolute base URL
+// Helper: Lấy URL frontend (không cần proxy)
 const getBaseUrl = () =>
   (process.env.NEXT_PUBLIC_FRONT_END || "").replace(/\/+$/, "") ||
-  "https://flexstyle.vercel.app"; // fallback if env not set
+  "https://flexstyle.vercel.app";
 
 async function getRelatedProducts(slug: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/related/${encodeURIComponent(
       slug
     )}`,
-    {
-      cache: "no-store",
-    }
+    { cache: "no-store" }
   );
-  if (!res.ok) {
-    throw new Error("Failed to fetch related products");
-  }
+
+  if (!res.ok) throw new Error("Failed to fetch related products");
+
   const data = await res.json();
-  if (!data || !Array.isArray(data.data)) {
-    throw new Error("Invalid related products data");
-  }
-  return data;
-}
-async function getReply(slug: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/phanhoi?slug=${encodeURIComponent(
-      slug
-    )}`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch related reply");
-  }
-  const data = await res.json();
+  if (!data || !Array.isArray(data.data)) throw new Error("Invalid related products data");
+
   return data;
 }
 
-// Dynamic Open Graph / Twitter metadata per product
+async function getReply(slug: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/phanhoi?slug=${encodeURIComponent(slug)}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch related reply");
+  return res.json();
+}
+
+// ================================
+// 🔥 generateMetadata — KHÔNG DÙNG PROXY
+// ================================
 export async function generateMetadata({
   params,
 }: {
@@ -50,16 +44,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const slug = (await params).slug?.trim();
   if (!slug) return {};
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/${encodeURIComponent(
-        slug
-      )}`,
-      {
-        cache: "no-store",
-      }
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/${encodeURIComponent(slug)}`,
+      { cache: "no-store" }
     );
+
     if (!res.ok) return {};
+
     const json = await res.json();
     const product = json?.data;
     if (!product) return {};
@@ -71,11 +64,10 @@ export async function generateMetadata({
 
     const base = getBaseUrl();
 
-    // pick first image and normalize to absolute https URL
-    const rawImage = product.HinhAnh && product.HinhAnh[0];
+    // 🔥 ẢNH GỐC - KHÔNG QUA PROXY
     const imageUrl =
-      rawImage
-        ? `${base}/api/proxy-image?url=${encodeURIComponent(rawImage)}`
+      product.HinhAnh && product.HinhAnh[0]
+        ? product.HinhAnh[0] // trực tiếp URL YAME
         : `${base}/default-og.jpg`;
 
     return {
@@ -90,7 +82,6 @@ export async function generateMetadata({
         images: [
           {
             url: imageUrl,
-            secureUrl: imageUrl,
             width: 1200,
             height: 630,
             alt: title,
@@ -111,6 +102,9 @@ export async function generateMetadata({
   }
 }
 
+// ================================
+// 🚀 PAGE RENDER
+// ================================
 export default async function Page({
   params,
 }: {
@@ -124,37 +118,30 @@ export default async function Page({
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/${encodeURIComponent(
         trimmedSlug
       )}`,
-      {
-        cache: "no-store",
-      }
+      { cache: "no-store" }
     );
+
     if (!res.ok) {
-      if (res.status === 404) {
-        notFound();
-      }
+      if (res.status === 404) notFound();
       throw new Error(`Failed to fetch product: ${res.status}`);
     }
 
     const productData = await res.json();
-    if (!productData || !productData.data) {
-      throw new Error("Invalid product data");
-    }
+    if (!productData || !productData.data) throw new Error("Invalid product data");
 
     const relatedProducts = await getRelatedProducts(trimmedSlug);
     const feedbacks = await getReply(trimmedSlug);
-    console.log("Product Data:", productData);
+
     return (
-      <>
-        <SlugPage
-          product={productData.data}
-          relatedProducts={relatedProducts.data}
-          feedbacks={feedbacks.data.feedbacks}
-          feedbacksCustomer={feedbacks.data.feedbacksCustomer}
-        />
-      </>
+      <SlugPage
+        product={productData.data}
+        relatedProducts={relatedProducts.data}
+        feedbacks={feedbacks.data.feedbacks}
+        feedbacksCustomer={feedbacks.data.feedbacksCustomer}
+      />
     );
   } catch (error) {
     console.error("Error fetching product:", error);
-    notFound(); // Fallback chung
+    notFound();
   }
 }
