@@ -207,7 +207,7 @@ export default function SlugPage({
         document.body.removeChild(textarea);
       }
       alert("Liên kết đã được sao chép vào bộ nhớ tạm!");
-    } catch (err) {
+    } catch {
       alert("Không thể sao chép liên kết. Vui lòng sao chép thủ công.");
     }
   };

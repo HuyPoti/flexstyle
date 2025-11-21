@@ -42,18 +42,6 @@ async function getReply(slug: string) {
   return data;
 }
 
-// Normalize an image URL: make absolute and ensure https
-function normalizeImageUrl(raw: any) {
-  if (!raw) return null;
-  let url = String(raw);
-  // some backends return protocol-relative or relative paths
-  if (!/^https?:\/\//i.test(url)) {
-    const base = getBaseUrl();
-    url = `${base}${url.startsWith("/") ? "" : "/"}${url}`;
-  }
-  return url;
-}
-
 // Dynamic Open Graph / Twitter metadata per product
 export async function generateMetadata({
   params,
@@ -85,9 +73,10 @@ export async function generateMetadata({
 
     // pick first image and normalize to absolute https URL
     const rawImage = product.HinhAnh && product.HinhAnh[0];
-    let imageUrl = rawImage
-      ? `${base}/api/proxy-image?url=${encodeURIComponent(rawImage)}`
-      : `${base}/default-og.jpg`;
+    const imageUrl =
+      rawImage
+        ? `${base}/api/proxy-image?url=${encodeURIComponent(rawImage)}`
+        : `${base}/default-og.jpg`;
 
     return {
       title,

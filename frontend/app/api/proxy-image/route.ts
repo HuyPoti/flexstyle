@@ -31,7 +31,7 @@ export async function GET(req: Request) {
         "Cache-Control": "public, max-age=86400",
       },
     });
-  } catch (error) {
+  } catch {
     return new Response("Proxy error", { status: 500 });
   }
 }
