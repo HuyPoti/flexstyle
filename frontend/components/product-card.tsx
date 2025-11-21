@@ -7,6 +7,7 @@ import type { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/help";
 import { useRouter } from "next/navigation";
 import { useSuKienUuDai } from "@/contexts/sukienuudai-context";
+import { normalizeImageUrl } from "@/utils/image-utils";
 
 interface ProductCardProps {
   product: Product;
@@ -34,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <Image
               src={
                 product.HinhAnh && product.HinhAnh.length > 0
-                  ? "https:" + product.HinhAnh[0]
+                  ? normalizeImageUrl(product.HinhAnh[0]) || "/placeholder.svg"
                   : "/placeholder.svg"
               }
               alt={product.TenSP}
@@ -56,7 +57,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <Image
               src={
                 product.HinhAnh && product.HinhAnh.length > 0
-                  ? "https:" + product.HinhAnh[0]
+                  ? normalizeImageUrl(product.HinhAnh[0]) || "/placeholder.svg"
                   : "/placeholder.svg"
               }
               alt={product.TenSP}

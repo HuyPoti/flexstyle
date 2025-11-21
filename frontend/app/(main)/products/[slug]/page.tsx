@@ -3,11 +3,16 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import SlugPage from "./SlugPage";
 
-// const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+// Helper to ensure we have a usable absolute base URL
+const getBaseUrl = () =>
+  (process.env.NEXT_PUBLIC_FRONT_END || "").replace(/\/+$/, "") ||
+  "https://flexstyle.vercel.app"; // fallback if env not set
 
 async function getRelatedProducts(slug: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/related/${slug}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/related/${encodeURIComponent(
+      slug
+    )}`,
     {
       cache: "no-store",
     }
@@ -23,7 +28,9 @@ async function getRelatedProducts(slug: string) {
 }
 async function getReply(slug: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/phanhoi?slug=${slug}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/phanhoi?slug=${encodeURIComponent(
+      slug
+    )}`,
     {
       cache: "no-store",
     }
@@ -61,7 +68,15 @@ export async function generateMetadata({
     const description =
       (product.MoTa && String(product.MoTa).slice(0, 160)) ||
       `Xem chi tiết ${title} trên FlexStyle`;
-    const images = product.HinhAnh[0];
+
+    const base = getBaseUrl();
+
+    // pick first image and normalize to absolute https URL
+    const rawImage = product.HinhAnh && product.HinhAnh[0];
+    const imageUrl =
+      rawImage
+        ? `${base}/api/proxy-image?url=${encodeURIComponent(rawImage)}`
+        : `${base}/default-og.jpg`;
 
     return {
       title,
@@ -71,22 +86,23 @@ export async function generateMetadata({
         description,
         siteName: "FlexStyle",
         type: "website",
-        url: `${
-          process.env.NEXT_PUBLIC_FRONT_END
-        }/products/${encodeURIComponent(slug)}`,
-        images: {
-          url: images,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
+        url: `${base}/products/${encodeURIComponent(slug)}`,
+        images: [
+          {
+            url: imageUrl,
+            secureUrl: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: title,
+          },
+        ],
         locale: "vi_VN",
       },
       twitter: {
         card: "summary_large_image",
         title,
         description,
-        images,
+        images: [imageUrl],
       },
     };
   } catch (error) {
@@ -101,11 +117,13 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const trimmedSlug = slug.trim();
+  const trimmedSlug = String(slug).trim();
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/${trimmedSlug}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sanpham/${encodeURIComponent(
+        trimmedSlug
+      )}`,
       {
         cache: "no-store",
       }
