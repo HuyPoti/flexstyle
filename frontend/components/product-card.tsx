@@ -23,6 +23,19 @@ export function ProductCard({ product }: ProductCardProps) {
     router.push(`/products/${product.slug}`);
   };
 
+  // Chuẩn hóa URL ảnh trước khi dùng trong `next/image`
+  const getImageSrc = (raw?: string) => {
+    if (!raw) return "/placeholder.svg";
+    // Nếu đã có http(s) thì giữ nguyên
+    if (/^https?:\/\//i.test(raw)) return raw;
+    // Nếu là protocol-relative (//domain/...) thì thêm https:
+    if (/^\/\//.test(raw)) return `https:${raw}`;
+    // Nếu là đường dẫn root-relative (/path) thì giữ nguyên (Next sẽ lấy trên cùng domain)
+    if (/^\//.test(raw)) return raw;
+    // Mặc định trả về raw (nếu backend trả full URL không chuẩn)
+    return raw;
+  };
+
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="relative aspect-square overflow-hidden">
@@ -32,11 +45,7 @@ export function ProductCard({ product }: ProductCardProps) {
         ) ? (
           <Link href={`/products/${product.slug}`}>
             <Image
-              src={
-                product.HinhAnh && product.HinhAnh.length > 0
-                  ? "https:" + product.HinhAnh[0]
-                  : "/placeholder.svg"
-              }
+              src={getImageSrc(product.HinhAnh && product.HinhAnh.length > 0 ? product.HinhAnh[0] : undefined)}
               alt={product.TenSP}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -54,11 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
         ) : (
           <div className="pointer-events-none">
             <Image
-              src={
-                product.HinhAnh && product.HinhAnh.length > 0
-                  ? "https:" + product.HinhAnh[0]
-                  : "/placeholder.svg"
-              }
+              src={getImageSrc(product.HinhAnh && product.HinhAnh.length > 0 ? product.HinhAnh[0] : undefined)}
               alt={product.TenSP}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
