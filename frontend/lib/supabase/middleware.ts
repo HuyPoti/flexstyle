@@ -55,6 +55,7 @@ export async function updateSession(request: NextRequest) {
     "/privacy",
     "/products",
     "/unauthorized",
+    "/sitemap.xml",
   ];
 
   const isPublic = publicRoutes.some((route) =>
