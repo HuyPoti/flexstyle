@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class PaypalService {
-  private clientId = process.env.PAYPAL_CLIENT_ID;
+  private clientId = .PAYPAL_CLIENT_ID;
   private clientSecret = process.env.PAYPAL_CLIENT_SECRET;
   private apiUrl = 'https://api-m.sandbox.paypal.com';
   calculateCartTotal(cart: { id: string; quantity: number }[]): number {

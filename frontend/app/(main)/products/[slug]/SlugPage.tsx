@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 // import { useCallback } from "react";
 // import { ImagePart, UploadedImage } from "@/lib/types";
 // import { fileToBase64, getMimeTypeFromBase64 } from "@/utils/image-utils";
 import Image from "next/image";
 // import Head from "next/head";
 import Link from "next/link";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 import {
   Star,
   Share2,
@@ -18,6 +19,7 @@ import {
   Truck,
   RotateCcw,
   Shield,
+  Copy,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -52,6 +54,10 @@ export default function SlugPage({
   // const [tryOnPreview, setTryOnPreview] = useState<string | null>(null);
   // const [ apparelImageUrl, setApparelImageUrl ] = useState<string | null>(null); // Sử dụng hook để lấy URL ảnh thử trang phục
   const discountPercentage = suKienUuDais.PhanTramGiam || 0;
+  // frontend base used to build full product URL for sharing
+  const frontendBase =
+    process.env.NEXT_PUBLIC_FRONT_END || "https://flexstyle.vercel.app";
+  const productUrl = `${frontendBase}/products/${product.slug}`;
 
   // useEffect(() => {
   //   setApparelImageUrl(product.HinhAnh[0] || null);
@@ -186,24 +192,33 @@ export default function SlugPage({
     );
   };
   // const copyToClipboard = async (text: string) => {
-  //   try {
-  //     if (navigator.clipboard?.writeText) {
-  //       await navigator.clipboard.writeText(text);
-  //     } else {
-  //       const textarea = document.createElement("textarea");
-  //       textarea.value = text;
-  //       textarea.style.position = "fixed";
-  //       textarea.style.left = "-9999px";
-  //       document.body.appendChild(textarea);
-  //       textarea.select();
-  //       document.execCommand("copy");
-  //       document.body.removeChild(textarea);
-  //     }
-  //     alert("Liên kết đã được sao chép vào bộ nhớ tạm!");
-  //   } catch {
-  //     alert("Không thể sao chép liên kết. Vui lòng sao chép thủ công.");
-  //   }
-  // };
+  // copy to clipboard helper
+  const copyToClipboard = async (text: string) => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+      alert("Liên kết đã được sao chép vào bộ nhớ tạm!");
+    } catch {
+      alert("Không thể sao chép liên kết. Vui lòng sao chép thủ công.");
+    }
+  };
+
+  const shareWhatsApp = () => {
+    const title = product.TenSP || "";
+    const text = `${title}\n${productUrl}`.trim();
+    const wa = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+    window.open(wa, "_blank");
+  };
 
   // Xử lý khi chọn ảnh thử trang phục
   // const handleTryOnImageChange = (file: File | null) => {
@@ -249,9 +264,79 @@ export default function SlugPage({
   //     setApparelImage(null);
   //   }
   // }, [showTryOnPopup, product.HinhAnh]);
+  const inStock = product.CHITIETSANPHAM.some((c) => (c.SoLuong ?? 0) > 0);
+  const price = product.GiaBan * (1 - discountPercentage / 100);
+  const avgRating = useMemo(() => {
+    if (!feedbacks || feedbacks.length === 0) return 0;
+    const sum = feedbacks.reduce((s, f) => s + (Number(f.SoSao) || 0), 0);
+    return Math.round((sum / feedbacks.length) * 10) / 10;
+  }, [feedbacks]);
+  const jsonLd = useMemo(() => {
+    const BASE =
+      typeof window !== "undefined" && window.location
+        ? `${window.location.origin}`
+        : "https://flex-style.vercel.app";
 
+    const images =
+      Array.isArray(product.HinhAnh) && product.HinhAnh.length
+        ? product.HinhAnh.map((img) =>
+            String(img).startsWith("http")
+              ? String(img)
+              : "https:" + String(img)
+          )
+        : [`${BASE}/og-default.png`];
+
+    const productSchema: Record<string, unknown> = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.TenSP ?? "",
+      image: images,
+      description: product.MoTa ?? "",
+      sku: product.MaSP ?? "",
+      mpn: product.MaSP ?? "",
+      brand: {
+        "@type": "Brand",
+        name: "FlexStyle",
+      },
+      offers: {
+        "@type": "Offer",
+        url: `${BASE}/products/${encodeURIComponent(
+          String(product.slug ?? product.MaSP ?? "")
+        )}`,
+        priceCurrency: "VND",
+        price: Number(price || product.GiaBan || 0),
+        availability: inStock
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      },
+    };
+
+    if (feedbacks && feedbacks.length > 0) {
+      productSchema["aggregateRating"] = {
+        "@type": "AggregateRating",
+        ratingValue: avgRating,
+        reviewCount: feedbacks.length,
+      };
+      productSchema["review"] = feedbacks.slice(0, 5).map((r, i) => ({
+        "@type": "Review",
+        author: feedbacksCustomer[i] ?? "Khách hàng",
+        datePublished: String(r.created_at ?? "").split("T")[0] || undefined,
+        reviewBody: r.BinhLuan ?? "",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: Number(r.SoSao ?? 0),
+        },
+      }));
+    }
+
+    return JSON.stringify(productSchema);
+  }, [product, feedbacks, feedbacksCustomer, avgRating, price, inStock]);
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
       {/* <Head>
         <meta property="og:title" content={product.TenSP} />
         <meta property="og:description" content={product.MoTa || ""} />
@@ -490,22 +575,74 @@ export default function SlugPage({
                 />
                 Yêu thích
               </Button> */}
+                {/* --- SHARE BUTTONS (REACT-SHARE) --- */}
+                <FacebookShareButton
+                  url={productUrl}
+                  title={product.TenSP}
+                  hashtag="#FlexStyle"
+                  className="flex-1"
+                >
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full bg-transparent"
+                  >
+                    <Share2 className="h-5 w-5 mr-2" />
+                    Chia sẻ Facebook
+                  </Button>
+                </FacebookShareButton>
                 <Button
                   variant="outline"
                   size="lg"
                   className="flex-1 bg-transparent"
-                  onClick={() =>
-                    window.open(
-                      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                        `https://flexstyle.vercel.app/products/${product.slug}`
-                      )}`,
-                      "_blank"
-                    )
-                  }
+                  onClick={() => copyToClipboard(productUrl)}
                 >
-                  <Share2 className="h-5 w-5 mr-2" />
-                  Chia sẻ Facebook
+                  <Copy className="h-5 w-5 mr-2" />
+                  Sao chép liên kết
                 </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="flex-1 bg-transparent"
+                  onClick={shareWhatsApp}
+                >
+                  {/* small WhatsApp icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    className="mr-2"
+                    fill="currentColor"
+                  >
+                    <path d="M20.5 3.5A11 11 0 1012 23a10.7 10.7 0 005.7-1.6L22 22l-1.6-4.3A10.7 10.7 0 0023 12 11 11 0 0020.5 3.5zM12 20a8 8 0 118-8 8 8 0 01-8 8zm4-6.6c-.2-.1-1.2-.6-1.4-.6s-.4 0-.6.2c-.2.2-.8.6-1 1-.2.4-.4.2-.8.1s-1-.5-2-1.5-1.1-1.8-1.3-2.1c-.2-.3 0-.4.1-.6s.4-.6.6-.9.2-.4.3-.6c.1-.2 0-.4-.1-.6-.1-.2-.8-1.8-1-2.4-.2-.6-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.5s-1.2 1.2-1.2 3.1c0 1.8 1.3 3.6 1.5 3.8s2.6 4 6.3 5.3c.9.4 1.5.3 1.9.2s2.2-.9 2.5-1.7c.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.6-.4z" />
+                  </svg>
+                  Chia sẻ WhatsApp
+                </Button>
+                <TwitterShareButton
+                  url={productUrl}
+                  title={product.TenSP}
+                  className="flex-1"
+                >
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full bg-transparent"
+                  >
+                    {/* X logo simple SVG */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      className="mr-2"
+                      fill="currentColor"
+                    >
+                      <path d="M20.5 3.5a8 8 0 01-2.3.6c.8-.5 1.4-1.2 1.6-2.1-.8.5-1.7.8-2.7 1-1.6-1.6-4.3-1.3-5.9.6-1 .9-1.4 2.1-1.1 3.3-3-.2-5.7-1.6-7.5-3.8-.9 1.6-.4 3.5 1 4.5-.7 0-1.4-.2-2-.5v.1c0 1.7 1.2 3.2 2.8 3.5-.6.2-1.3.2-1.9.1.5 1.6 2 2.8 3.7 2.8-1.6 1.2-3.6 1.9-5.6 1.9-.4 0-.8 0-1.1-.1 2 1.3 4.4 2 6.9 2 8.2 0 12.7-6.8 12.7-12.7v-.6c.9-.7 1.6-1.6 2.1-2.6-.9.4-1.9.7-2.9.8z" />
+                    </svg>
+                    Chia sẻ X
+                  </Button>
+                </TwitterShareButton>
                 <Button
                   variant="outline"
                   size="lg"
