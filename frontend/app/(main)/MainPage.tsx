@@ -430,6 +430,13 @@ export default function MainPage({
               {/* <MailChimp /> */}
             </div>
           </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `
+                             <getresponse-form form-id="2c66a7da-02a4-48b4-992b-5db071e49833" e="1"></getresponse-form>
+                        `,
+            }}
+          />
         </section>
       </div>
     </>
