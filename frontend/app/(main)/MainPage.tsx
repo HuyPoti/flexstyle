@@ -162,7 +162,7 @@ export default function MainPage({
           theme: "light",
         });
       }
-    } catch (error) {
+    } catch{
       toast.error("Đăng ký nhận tin tức thất bại. Vui lòng thử lại.", {
         position: "top-right",
         autoClose: 5000,

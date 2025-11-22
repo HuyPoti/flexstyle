@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Mail, Download, Send, RefreshCw, X } from "lucide-react";
+import { Mail, Download, RefreshCw, X } from "lucide-react";
 import { EmailMarketing } from "../../../lib/types";
 import { createClient } from "@/lib/supabase/client";
 
@@ -13,12 +13,12 @@ const EmailMarketingAdmin = ({
   const [loading, setLoading] = useState(false);
   const [emailMarketingData, setEmailMarketingData] = useState(emailMarketing);
 
-  const [campaignDialog, setCampaignDialog] = useState(false);
-  const [emailCampaign, setEmailCampaign] = useState({
-    subject: "",
-    content: "",
-    includeUsers: true,
-  });
+  // const [campaignDialog, setCampaignDialog] = useState(false);
+  // const [emailCampaign, setEmailCampaign] = useState({
+  //   subject: "",
+  //   content: "",
+  //   includeUsers: true,
+  // });
 
   const [exportDialog, setExportDialog] = useState(false);
   const reloadData = async () => {
@@ -144,13 +144,13 @@ const EmailMarketingAdmin = ({
 
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-3 mb-6">
-          <button
+          {/* <button
             onClick={() => setCampaignDialog(true)}
             className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
             <Send className="w-4 h-4" />
             Create Email Campaign
-          </button>
+          </button> */}
           <button
             onClick={() => setExportDialog(true)}
             className="flex items-center gap-2 bg-white text-gray-700 px-6 py-2.5 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors font-medium"
