@@ -1,7 +1,6 @@
-
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 // import { useCallback } from "react";
 // import { ImagePart, UploadedImage } from "@/lib/types";
 // import { fileToBase64, getMimeTypeFromBase64 } from "@/utils/image-utils";
@@ -56,7 +55,8 @@ export default function SlugPage({
   // const [ apparelImageUrl, setApparelImageUrl ] = useState<string | null>(null); // Sử dụng hook để lấy URL ảnh thử trang phục
   const discountPercentage = suKienUuDais.PhanTramGiam || 0;
   // frontend base used to build full product URL for sharing
-  const frontendBase = process.env.NEXT_PUBLIC_FRONT_END || "https://flexstyle.vercel.app";
+  const frontendBase =
+    process.env.NEXT_PUBLIC_FRONT_END || "https://flexstyle.vercel.app";
   const productUrl = `${frontendBase}/products/${product.slug}`;
 
   // useEffect(() => {
@@ -220,7 +220,6 @@ export default function SlugPage({
     window.open(wa, "_blank");
   };
 
-
   // Xử lý khi chọn ảnh thử trang phục
   // const handleTryOnImageChange = (file: File | null) => {
   //   setTryOnImage(file);
@@ -265,9 +264,79 @@ export default function SlugPage({
   //     setApparelImage(null);
   //   }
   // }, [showTryOnPopup, product.HinhAnh]);
+  const inStock = product.CHITIETSANPHAM.some((c) => (c.SoLuong ?? 0) > 0);
+  const price = product.GiaBan * (1 - discountPercentage / 100);
+  const avgRating = useMemo(() => {
+    if (!feedbacks || feedbacks.length === 0) return 0;
+    const sum = feedbacks.reduce((s, f) => s + (Number(f.SoSao) || 0), 0);
+    return Math.round((sum / feedbacks.length) * 10) / 10;
+  }, [feedbacks]);
+  const jsonLd = useMemo(() => {
+    const BASE =
+      typeof window !== "undefined" && window.location
+        ? `${window.location.origin}`
+        : "https://flex-style.vercel.app";
 
+    const images =
+      Array.isArray(product.HinhAnh) && product.HinhAnh.length
+        ? product.HinhAnh.map((img) =>
+            String(img).startsWith("http")
+              ? String(img)
+              : "https:" + String(img)
+          )
+        : [`${BASE}/og-default.png`];
+
+    const productSchema: Record<string, unknown> = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.TenSP ?? "",
+      image: images,
+      description: product.MoTa ?? "",
+      sku: product.MaSP ?? "",
+      mpn: product.MaSP ?? "",
+      brand: {
+        "@type": "Brand",
+        name: "FlexStyle",
+      },
+      offers: {
+        "@type": "Offer",
+        url: `${BASE}/products/${encodeURIComponent(
+          String(product.slug ?? product.MaSP ?? "")
+        )}`,
+        priceCurrency: "VND",
+        price: Number(price || product.GiaBan || 0),
+        availability: inStock
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      },
+    };
+
+    if (feedbacks && feedbacks.length > 0) {
+      productSchema["aggregateRating"] = {
+        "@type": "AggregateRating",
+        ratingValue: avgRating,
+        reviewCount: feedbacks.length,
+      };
+      productSchema["review"] = feedbacks.slice(0, 5).map((r, i) => ({
+        "@type": "Review",
+        author: feedbacksCustomer[i] ?? "Khách hàng",
+        datePublished: String(r.created_at ?? "").split("T")[0] || undefined,
+        reviewBody: r.BinhLuan ?? "",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: Number(r.SoSao ?? 0),
+        },
+      }));
+    }
+
+    return JSON.stringify(productSchema);
+  }, [product, feedbacks, feedbacksCustomer, avgRating, price, inStock]);
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
       {/* <Head>
         <meta property="og:title" content={product.TenSP} />
         <meta property="og:description" content={product.MoTa || ""} />
@@ -506,14 +575,18 @@ export default function SlugPage({
                 />
                 Yêu thích
               </Button> */}
-              {/* --- SHARE BUTTONS (REACT-SHARE) --- */}
+                {/* --- SHARE BUTTONS (REACT-SHARE) --- */}
                 <FacebookShareButton
                   url={productUrl}
                   title={product.TenSP}
                   hashtag="#FlexStyle"
                   className="flex-1"
                 >
-                  <Button variant="outline" size="lg" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full bg-transparent"
+                  >
                     <Share2 className="h-5 w-5 mr-2" />
                     Chia sẻ Facebook
                   </Button>
@@ -551,7 +624,11 @@ export default function SlugPage({
                   title={product.TenSP}
                   className="flex-1"
                 >
-                  <Button variant="outline" size="lg" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full bg-transparent"
+                  >
                     {/* X logo simple SVG */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
