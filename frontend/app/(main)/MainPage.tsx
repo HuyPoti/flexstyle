@@ -18,6 +18,7 @@ import EventVoucherSlider from "@/components/ui/EventVoucherSlider";
 import { useThongBao } from "@/contexts/thongbao-context";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
+import Head from "next/head";
 
 function PopupUuDai({ suKienUuDais }: { suKienUuDais: SuKienUuDai }) {
   const startDate = new Date(suKienUuDais.NgayPH);
@@ -137,7 +138,7 @@ export default function MainPage({
             email: email,
           }),
         }
-      )
+      );
       const resData = await res.json();
       if (res.status === 201 || res.status === 200) {
         toast.success("Đăng ký nhận tin tức thành công!", {
@@ -151,18 +152,21 @@ export default function MainPage({
           theme: "light",
         });
       } else {
-        toast.error(resData.message || "Đăng ký nhận tin tức thất bại. Vui lòng thử lại.", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.error(
+          resData.message || "Đăng ký nhận tin tức thất bại. Vui lòng thử lại.",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
       }
-    } catch{
+    } catch {
       toast.error("Đăng ký nhận tin tức thất bại. Vui lòng thử lại.", {
         position: "top-right",
         autoClose: 5000,
@@ -177,237 +181,257 @@ export default function MainPage({
   };
 
   return (
-    <div className="flex flex-col">
-      <ToastContainer />
-      {popup && isValidSuKienUuDai && (
-        <PopupUuDai suKienUuDais={suKienUuDais} />
-      )}
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary/10 to-secondary/10 py-20 lg:py-32">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              {/* <Badge variant="secondary" className="w-fit">
+    <>
+      <Head>
+        {/* GetResponse Analytics */}
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+                             (function(m, o, n, t, e, r, _){
+          m['__GetResponseAnalyticsObject'] = e;m[e] = m[e] || function() {(m[e].q = m[e].q || []).push(arguments)};
+          r = o.createElement(n);_ = o.getElementsByTagName(n)[0];r.async = 1;r.src = t;r.setAttribute('crossorigin', 'use-credentials');_.parentNode .insertBefore(r, _);
+      })(window, document, 'script', 'https://an.gr-wcon.com/script/2e5fd869-1b59-43ad-90ca-353e1024d45a/ga.js', 'GrTracking');
+                        `,
+          }}
+        />
+        <script src="https://getresponse.com/form-support.js" async></script>
+      </Head>
+      <div className="flex flex-col">
+        <ToastContainer />
+        {popup && isValidSuKienUuDai && (
+          <PopupUuDai suKienUuDais={suKienUuDais} />
+        )}
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-r from-primary/10 to-secondary/10 py-20 lg:py-32">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                {/* <Badge variant="secondary" className="w-fit">
                 Bộ sưu tập mới 2024
               </Badge> */}
-              <h1 className="text-4xl lg:text-6xl font-bold text-balance -translate-y-[1rem]">
-                Thời trang hiện đại cho{" "}
-                <span className="text-primary">phong cách</span> của bạn
-              </h1>
-              <p className="text-lg text-muted-foreground text-pretty">
-                Khám phá những xu hướng thời trang mới nhất với chất lượng cao
-                cấp và giá cả hợp lý. Tự tin thể hiện phong cách riêng của bạn.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/products">
-                    Mua sắm ngay
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild className="mb-5">
-                  <Link href="/about">Tìm hiểu thêm</Link>
-                </Button>
-              </div>
-              <EventVoucherSlider
-                vouchers={vouchersPromotions}
-                events={suKienUuDaisPromotions}
-              />
-            </div>
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
-                <Image
-                  src="/modern-fashion-model-wearing-stylish-clothing.jpg"
-                  alt="Fashion Model"
-                  className="w-full h-full object-cover"
-                  layout="fill"
+                <h1 className="text-4xl lg:text-6xl font-bold text-balance -translate-y-[1rem]">
+                  Thời trang hiện đại cho{" "}
+                  <span className="text-primary">phong cách</span> của bạn
+                </h1>
+                <p className="text-lg text-muted-foreground text-pretty">
+                  Khám phá những xu hướng thời trang mới nhất với chất lượng cao
+                  cấp và giá cả hợp lý. Tự tin thể hiện phong cách riêng của
+                  bạn.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button size="lg" asChild>
+                    <Link href="/products">
+                      Mua sắm ngay
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="lg" asChild className="mb-5">
+                    <Link href="/about">Tìm hiểu thêm</Link>
+                  </Button>
+                </div>
+                <EventVoucherSlider
+                  vouchers={vouchersPromotions}
+                  events={suKienUuDaisPromotions}
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-lg shadow-lg border">
-                <div className="flex items-center space-x-3">
-                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Shield className="h-6 w-6 text-primary" />
+              <div className="relative">
+                <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
+                  <Image
+                    src="/modern-fashion-model-wearing-stylish-clothing.jpg"
+                    alt="Fashion Model"
+                    className="w-full h-full object-cover"
+                    layout="fill"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-lg shadow-lg border">
+                  <div className="flex items-center space-x-3">
+                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Shield className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">
+                        Chất lượng đảm bảo
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        100% hàng chính hãng
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-sm">Chất lượng đảm bảo</p>
-                    <p className="text-xs text-muted-foreground">
-                      100% hàng chính hãng
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center space-y-3">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                  <Truck className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-semibold">Giao hàng miễn phí</h3>
+                <p className="text-sm text-muted-foreground">
+                  Miễn phí giao hàng cho đơn hàng trên 500k
+                </p>
+              </div>
+              <div className="text-center space-y-3">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                  <Shield className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-semibold">Thanh toán an toàn</h3>
+                <p className="text-sm text-muted-foreground">
+                  Bảo mật thông tin 100% với SSL
+                </p>
+              </div>
+              <div className="text-center space-y-3">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                  <RotateCcw className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-semibold">Đổi trả dễ dàng</h3>
+                <p className="text-sm text-muted-foreground">
+                  Đổi trả trong vòng 30 ngày
+                </p>
+              </div>
+              <div className="text-center space-y-3">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                  <Headphones className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-semibold">Hỗ trợ 24/7</h3>
+                <p className="text-sm text-muted-foreground">
+                  Tư vấn và hỗ trợ mọi lúc
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Products Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-balance">
+                Sản phẩm nổi bật
+              </h2>
+              <p className="text-lg text-muted-foreground text-pretty max-w-2xl mx-auto">
+                Khám phá những sản phẩm được yêu thích nhất với chất lượng cao
+                cấp và thiết kế thời thượng
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {initialProducts.map((product) => (
+                <ProductCard key={product.MaSP} product={product} />
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/products">
+                  Xem tất cả sản phẩm
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Categories Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-balance">
+                Danh mục sản phẩm
+              </h2>
+              <p className="text-lg text-muted-foreground text-pretty max-w-2xl mx-auto">
+                Tìm kiếm theo danh mục để dễ dàng chọn lựa sản phẩm phù hợp
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Link href="/products/ao" className="group">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
+                  <Image
+                    src="/men-s-fashion-clothing-collection.jpg"
+                    alt="Áo thanh lịch"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    layout="fill"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <h3 className="text-2xl font-bold mb-2">Áo thanh lịch</h3>
+                    <p className="text-sm opacity-90">
+                      Phong cách lịch lãm, hiện đại
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center space-y-3">
-              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <Truck className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-semibold">Giao hàng miễn phí</h3>
-              <p className="text-sm text-muted-foreground">
-                Miễn phí giao hàng cho đơn hàng trên 500k
-              </p>
-            </div>
-            <div className="text-center space-y-3">
-              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-semibold">Thanh toán an toàn</h3>
-              <p className="text-sm text-muted-foreground">
-                Bảo mật thông tin 100% với SSL
-              </p>
-            </div>
-            <div className="text-center space-y-3">
-              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <RotateCcw className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-semibold">Đổi trả dễ dàng</h3>
-              <p className="text-sm text-muted-foreground">
-                Đổi trả trong vòng 30 ngày
-              </p>
-            </div>
-            <div className="text-center space-y-3">
-              <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <Headphones className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-semibold">Hỗ trợ 24/7</h3>
-              <p className="text-sm text-muted-foreground">
-                Tư vấn và hỗ trợ mọi lúc
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance">
-              Sản phẩm nổi bật
-            </h2>
-            <p className="text-lg text-muted-foreground text-pretty max-w-2xl mx-auto">
-              Khám phá những sản phẩm được yêu thích nhất với chất lượng cao cấp
-              và thiết kế thời thượng
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {initialProducts.map((product) => (
-              <ProductCard key={product.MaSP} product={product} />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/products">
-                Xem tất cả sản phẩm
-                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
 
-      {/* Categories Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance">
-              Danh mục sản phẩm
-            </h2>
-            <p className="text-lg text-muted-foreground text-pretty max-w-2xl mx-auto">
-              Tìm kiếm theo danh mục để dễ dàng chọn lựa sản phẩm phù hợp
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Link href="/products/ao" className="group">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
-                <Image
-                  src="/men-s-fashion-clothing-collection.jpg"
-                  alt="Áo thanh lịch"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  layout="fill"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Áo thanh lịch</h3>
-                  <p className="text-sm opacity-90">
-                    Phong cách lịch lãm, hiện đại
-                  </p>
+              <Link href="/products/quan" className="group">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
+                  <Image
+                    src="/women-s-fashion-clothing-collection.jpg"
+                    alt="Quần quý phái"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    layout="fill"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <h3 className="text-2xl font-bold mb-2">Quần quý phái</h3>
+                    <p className="text-sm opacity-90">Thanh lịch, quyến rũ</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
 
-            <Link href="/products/quan" className="group">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
-                <Image
-                  src="/women-s-fashion-clothing-collection.jpg"
-                  alt="Quần quý phái"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  layout="fill"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Quần quý phái</h3>
-                  <p className="text-sm opacity-90">Thanh lịch, quyến rũ</p>
+              <Link href="/products/phu-kien" className="group">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
+                  <Image
+                    src="/fashion-accessories-collection-bags-watches.jpg"
+                    alt="Phụ kiện"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    layout="fill"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <h3 className="text-2xl font-bold mb-2">Phụ kiện</h3>
+                    <p className="text-sm opacity-90">Hoàn thiện phong cách</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-
-            <Link href="/products/phu-kien" className="group">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
-                <Image
-                  src="/fashion-accessories-collection-bags-watches.jpg"
-                  alt="Phụ kiện"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  layout="fill"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Phụ kiện</h3>
-                  <p className="text-sm opacity-90">Hoàn thiện phong cách</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="bg-primary/5 rounded-2xl p-8 lg:p-12 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
-              Đăng ký nhận tin tức
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto">
-              Nhận thông tin về sản phẩm mới, ưu đãi đặc biệt và xu hướng thời
-              trang mới nhất
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Nhập email của bạn"
-                className="flex-1 px-4 py-3 rounded-lg border border-border bg-background"
-              />
-              <Button size="lg" onClick={handleClick}>
-                Đăng ký
-              </Button>
+              </Link>
             </div>
-            {/* <MailChimp /> */}
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="bg-primary/5 rounded-2xl p-8 lg:p-12 text-center">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+                Đăng ký nhận tin tức
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto">
+                Nhận thông tin về sản phẩm mới, ưu đãi đặc biệt và xu hướng thời
+                trang mới nhất
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Nhập email của bạn"
+                  className="flex-1 px-4 py-3 rounded-lg border border-border bg-background"
+                />
+                <Button size="lg" onClick={handleClick}>
+                  Đăng ký
+                </Button>
+              </div>
+              {/* <MailChimp /> */}
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
