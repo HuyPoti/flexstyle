@@ -1,4 +1,13 @@
+import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
+
 // Định nghĩa kiểu dữ liệu trả về từ hàm findAllOrdersForCustomer
+export interface EmailMarketing {
+  email: string;
+  created_at: Timestamp;
+  type: string;
+  VAITRO: string | null;
+  Username: string | null;
+}
 export interface OrderResponse {
   MaDH: string;
   SoLuong: number;
