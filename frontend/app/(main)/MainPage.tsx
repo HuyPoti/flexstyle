@@ -18,7 +18,6 @@ import EventVoucherSlider from "@/components/ui/EventVoucherSlider";
 import { useThongBao } from "@/contexts/thongbao-context";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
-import Head from "next/head";
 
 function PopupUuDai({ suKienUuDais }: { suKienUuDais: SuKienUuDai }) {
   const startDate = new Date(suKienUuDais.NgayPH);
@@ -182,21 +181,19 @@ export default function MainPage({
 
   return (
     <>
-      <Head>
-        {/* GetResponse Analytics */}
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
+      {/* GetResponse Analytics */}
+      <script
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `
                              (function(m, o, n, t, e, r, _){
           m['__GetResponseAnalyticsObject'] = e;m[e] = m[e] || function() {(m[e].q = m[e].q || []).push(arguments)};
           r = o.createElement(n);_ = o.getElementsByTagName(n)[0];r.async = 1;r.src = t;r.setAttribute('crossorigin', 'use-credentials');_.parentNode .insertBefore(r, _);
       })(window, document, 'script', 'https://an.gr-wcon.com/script/2e5fd869-1b59-43ad-90ca-353e1024d45a/ga.js', 'GrTracking');
                         `,
-          }}
-        />
-        <script src="https://getresponse.com/form-support.js" async></script>
-      </Head>
+        }}
+      />
+      <script src="https://getresponse.com/form-support.js" async></script>
       <div className="flex flex-col">
         <ToastContainer />
         {popup && isValidSuKienUuDai && (
