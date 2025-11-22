@@ -18,6 +18,12 @@ model CHITIETNHAPHANG {
   PHIEUNHAPHANG PHIEUNHAPHANG @relation(fields: [MaPNH], references: [MaPNH])
 }
 
+model emailmarketing {
+  id     String    @id @default(uuid())
+  email String     
+  created_at DateTime  @default(now())
+}
+
 
 model CHITIETGIOHANG {
   MaCTGH         String         @id @default(uuid())

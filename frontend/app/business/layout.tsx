@@ -14,6 +14,7 @@ import {
   Layers,
   PlusSquare,
   CheckSquare,
+  Mails,
 } from "lucide-react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,6 +34,7 @@ export default function BusinessLayout({
     "/business/categories": "Danh mục sản phẩm",
     "/business/create-stock-in": "Tạo phiếu nhập hàng",
     "/business/confirm-stock-in": "Xác nhận nhập hàng",
+    "/business/email-marketing": "Email Marketing",
   };
 
   const sidebarItems = [
@@ -55,6 +57,11 @@ export default function BusinessLayout({
       title: "Xác nhận nhập hàng",
       href: "/business/confirm-stock-in",
       icon: CheckSquare,
+    },
+    {
+      title: "Email Marketing",
+      href: "/business/email-marketing",
+      icon: Mails,
     },
   ];
 

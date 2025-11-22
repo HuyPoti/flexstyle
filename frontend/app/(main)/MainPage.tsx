@@ -13,10 +13,11 @@ import Link from "next/link";
 import type { CartItem, Product, SuKienUuDai } from "@/lib/types";
 import { useSuKienUuDai } from "@/contexts/sukienuudai-context";
 import { useEffect, useMemo, useState } from "react";
-import MailChimp from "@/components/mail-chimp";
+// import MailChimp from "@/components/mail-chimp";
 import EventVoucherSlider from "@/components/ui/EventVoucherSlider";
 import { useThongBao } from "@/contexts/thongbao-context";
 import Image from "next/image";
+import { toast, ToastContainer } from "react-toastify";
 
 function PopupUuDai({ suKienUuDais }: { suKienUuDais: SuKienUuDai }) {
   const startDate = new Date(suKienUuDais.NgayPH);
@@ -107,8 +108,77 @@ export default function MainPage({
     }, 10000);
     return () => clearTimeout(timer);
   }, [isValidSuKienUuDai]);
+  const [email, setEmail] = useState("");
+  const handleClick = async () => {
+    //kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Vui lòng nhập địa chỉ email hợp lệ.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/emailmarketing/subscribe-newsletter`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        }
+      )
+      const resData = await res.json();
+      if (res.status === 201 || res.status === 200) {
+        toast.success("Đăng ký nhận tin tức thành công!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.error(resData.message || "Đăng ký nhận tin tức thất bại. Vui lòng thử lại.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      toast.error("Đăng ký nhận tin tức thất bại. Vui lòng thử lại.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       {popup && isValidSuKienUuDai && (
         <PopupUuDai suKienUuDais={suKienUuDais} />
       )}
@@ -322,15 +392,19 @@ export default function MainPage({
               Nhận thông tin về sản phẩm mới, ưu đãi đặc biệt và xu hướng thời
               trang mới nhất
             </p>
-            {/* <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Nhập email của bạn"
                 className="flex-1 px-4 py-3 rounded-lg border border-border bg-background"
               />
-              <Button size="lg">Đăng ký</Button>
-            </div> */}
-            <MailChimp />
+              <Button size="lg" onClick={handleClick}>
+                Đăng ký
+              </Button>
+            </div>
+            {/* <MailChimp /> */}
           </div>
         </div>
       </section>

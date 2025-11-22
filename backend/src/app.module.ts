@@ -31,6 +31,7 @@ import { GeminiModule } from './gemini/gemini.module';
 import { ThongkeController } from './thongke/thongke.controller';
 import { ThongkeService } from './thongke/thongke.service';
 import { ThongkeModule } from './thongke/thongke.module';
+import { EmailmarketingModule } from './emailmarketing/emailmarketing.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -62,6 +63,7 @@ import { ThongkeModule } from './thongke/thongke.module';
     ThongbaoModule,
     GeminiModule,
     ThongkeModule,
+    EmailmarketingModule,
   ],
   controllers: [
     AppController,
