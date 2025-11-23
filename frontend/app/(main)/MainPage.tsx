@@ -13,7 +13,7 @@ import Link from "next/link";
 import type { CartItem, Product, SuKienUuDai } from "@/lib/types";
 import { useSuKienUuDai } from "@/contexts/sukienuudai-context";
 import { useEffect, useMemo, useState } from "react";
-// import MailChimp from "@/components/mail-chimp";
+import MailChimp from "@/components/mail-chimp";
 import EventVoucherSlider from "@/components/ui/EventVoucherSlider";
 import { useThongBao } from "@/contexts/thongbao-context";
 import Image from "next/image";
@@ -181,19 +181,6 @@ export default function MainPage({
 
   return (
     <>
-      {/* GetResponse Analytics */}
-      <script
-        type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: `
-                             (function(m, o, n, t, e, r, _){
-          m['__GetResponseAnalyticsObject'] = e;m[e] = m[e] || function() {(m[e].q = m[e].q || []).push(arguments)};
-          r = o.createElement(n);_ = o.getElementsByTagName(n)[0];r.async = 1;r.src = t;r.setAttribute('crossorigin', 'use-credentials');_.parentNode .insertBefore(r, _);
-      })(window, document, 'script', 'https://an.gr-wcon.com/script/2e5fd869-1b59-43ad-90ca-353e1024d45a/ga.js', 'GrTracking');
-                        `,
-        }}
-      />
-      <script src="https://getresponse.com/form-support.js" async></script>
       <div className="flex flex-col">
         <ToastContainer />
         {popup && isValidSuKienUuDai && (
@@ -424,16 +411,11 @@ export default function MainPage({
                   Đăng ký
                 </Button>
               </div>
-              {/* <MailChimp /> */}
+            </div>
+            <div>
+              <MailChimp />
             </div>
           </div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `
-                             <getresponse-form form-id="2c66a7da-02a4-48b4-992b-5db071e49833" e="1"></getresponse-form>
-                        `,
-            }}
-          />
         </section>
       </div>
     </>

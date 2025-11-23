@@ -7,10 +7,14 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 // import Head from "next/head";
 import Link from "next/link";
-import { FacebookShareButton, TwitterShareButton } from "react-share";
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from "react-share";
 import {
   Star,
-  Share2,
   ShoppingCart,
   Minus,
   Plus,
@@ -213,12 +217,12 @@ export default function SlugPage({
     }
   };
 
-  const shareWhatsApp = () => {
-    const title = product.TenSP || "";
-    const text = `${title}\n${productUrl}`.trim();
-    const wa = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-    window.open(wa, "_blank");
-  };
+  // const shareWhatsApp = () => {
+  //   const title = product.TenSP || "";
+  //   const text = `${title}\n${productUrl}`.trim();
+  //   const wa = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  //   window.open(wa, "_blank");
+  // };
 
   // Xử lý khi chọn ảnh thử trang phục
   // const handleTryOnImageChange = (file: File | null) => {
@@ -576,21 +580,6 @@ export default function SlugPage({
                 Yêu thích
               </Button> */}
                 {/* --- SHARE BUTTONS (REACT-SHARE) --- */}
-                <FacebookShareButton
-                  url={productUrl}
-                  title={product.TenSP}
-                  hashtag="#FlexStyle"
-                  className="flex-1"
-                >
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full bg-transparent"
-                  >
-                    <Share2 className="h-5 w-5 mr-2" />
-                    Chia sẻ Facebook
-                  </Button>
-                </FacebookShareButton>
                 <Button
                   variant="outline"
                   size="lg"
@@ -604,10 +593,38 @@ export default function SlugPage({
                   variant="outline"
                   size="lg"
                   className="flex-1 bg-transparent"
+                  onClick={() => setShowTryOnPopup(true)}
+                >
+                  Thử trang phục
+                </Button>
+              </div>
+              <div className="flex space-x-3">
+                <FacebookShareButton
+                  url={productUrl}
+                  title={product.TenSP}
+                  hashtag="#FlexStyle"
+                  className="flex-1"
+                >
+                  {/* <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full bg-transparent"
+                  > */}
+                  <div className="flex flex-row items-center justify-center border p-2 rounded-md">
+                    <FacebookIcon size={32} round />
+                    Chia sẻ Facebook
+                  </div>
+
+                  {/* </Button> */}
+                </FacebookShareButton>
+                {/* <Button
+                  variant="outline"
+                  size="lg"
+                  className="flex-1 bg-transparent"
                   onClick={shareWhatsApp}
                 >
                   {/* small WhatsApp icon */}
-                  <svg
+                {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     width="18"
@@ -618,44 +635,28 @@ export default function SlugPage({
                     <path d="M20.5 3.5A11 11 0 1012 23a10.7 10.7 0 005.7-1.6L22 22l-1.6-4.3A10.7 10.7 0 0023 12 11 11 0 0020.5 3.5zM12 20a8 8 0 118-8 8 8 0 01-8 8zm4-6.6c-.2-.1-1.2-.6-1.4-.6s-.4 0-.6.2c-.2.2-.8.6-1 1-.2.4-.4.2-.8.1s-1-.5-2-1.5-1.1-1.8-1.3-2.1c-.2-.3 0-.4.1-.6s.4-.6.6-.9.2-.4.3-.6c.1-.2 0-.4-.1-.6-.1-.2-.8-1.8-1-2.4-.2-.6-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.5s-1.2 1.2-1.2 3.1c0 1.8 1.3 3.6 1.5 3.8s2.6 4 6.3 5.3c.9.4 1.5.3 1.9.2s2.2-.9 2.5-1.7c.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.6-.4z" />
                   </svg>
                   Chia sẻ WhatsApp
-                </Button>
+                </Button> */}
                 <TwitterShareButton
                   url={productUrl}
                   title={product.TenSP}
                   className="flex-1"
                 >
-                  <Button
+                  {/* <Button
                     variant="outline"
                     size="lg"
                     className="w-full bg-transparent"
-                  >
-                    {/* X logo simple SVG */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="18"
-                      height="18"
-                      className="mr-2"
-                      fill="currentColor"
-                    >
-                      <path d="M20.5 3.5a8 8 0 01-2.3.6c.8-.5 1.4-1.2 1.6-2.1-.8.5-1.7.8-2.7 1-1.6-1.6-4.3-1.3-5.9.6-1 .9-1.4 2.1-1.1 3.3-3-.2-5.7-1.6-7.5-3.8-.9 1.6-.4 3.5 1 4.5-.7 0-1.4-.2-2-.5v.1c0 1.7 1.2 3.2 2.8 3.5-.6.2-1.3.2-1.9.1.5 1.6 2 2.8 3.7 2.8-1.6 1.2-3.6 1.9-5.6 1.9-.4 0-.8 0-1.1-.1 2 1.3 4.4 2 6.9 2 8.2 0 12.7-6.8 12.7-12.7v-.6c.9-.7 1.6-1.6 2.1-2.6-.9.4-1.9.7-2.9.8z" />
-                    </svg>
-                    Chia sẻ X
-                  </Button>
+                  > */}
+                  {/* X logo simple SVG */}
+                  <div className="flex flex-row items-center justify-center border p-2 rounded-md">
+                    <TwitterIcon size={32} round />
+                    Chia sẻ Facebook
+                  </div>
                 </TwitterShareButton>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="flex-1 bg-transparent"
-                  onClick={() => setShowTryOnPopup(true)}
-                >
-                  Thử trang phục
-                </Button>
               </div>
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
               <div className="flex items-center space-x-3">
                 <Truck className="h-5 w-5 text-primary" />
                 <div>
