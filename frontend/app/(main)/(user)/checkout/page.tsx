@@ -499,7 +499,7 @@ export default function CheckoutPage() {
                   >
                     <div className="relative">
                       <Image
-                        src={"https:" + item.image || "/placeholder.svg"}
+                        src={item.image}
                         alt={item.name}
                         width={100}
                         height={100}

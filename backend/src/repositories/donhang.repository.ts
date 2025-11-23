@@ -18,7 +18,7 @@ export class DonhangRepository {
         SoLuong: data.SoLuong,
         TongTien: data.TongTien,
         TenNM: data.TenNM,
-        SoDienThoai: data.SoDienThoai,
+        SoDienThoai: data.SoDienThoai,  
         DiaChi: data.DiaChi,
         MaCTSP: data.MaCTSP,
         MaTK_KH: data.MaTK_KH,

@@ -328,7 +328,7 @@ export default function OrdersPage({
                                 className="flex items-center gap-4"
                               >
                                 <Image
-                                  src={"https:" + ctsp.SANPHAM.HinhAnh[0]}
+                                  src={ctsp.SANPHAM.HinhAnh[0]}
                                   alt={ctsp.SANPHAM.TenSP}
                                   width={100}
                                   height={100}
@@ -349,10 +349,7 @@ export default function OrdersPage({
                               <Image
                                 width={100}
                                 height={100}
-                                src={
-                                  "https:" +
-                                  order.CHITIETSANPHAM.SANPHAM.HinhAnh[0]
-                                }
+                                src={order.CHITIETSANPHAM.SANPHAM.HinhAnh[0]}
                                 alt={order.CHITIETSANPHAM.SANPHAM.TenSP}
                                 className="w-16 h-16 object-cover rounded"
                               />
