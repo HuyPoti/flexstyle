@@ -16,7 +16,28 @@ export default function CheckoutSuccessPage() {
   const [orderID, setOrderId] = useState<string>("");
   useEffect(() => {
     const id = searchParams.get("orderID") || searchParams.get("vnp_TxnRef");
+    const run = async () => {
+      try {
+        const res = await fetch(
+          `${
+            process.env.NEXT_PUBLIC_BACKEND_URL
+          }/api/vnpay/vnpay-checksum?${searchParams.toString()}`,
+          {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        const data = await res.json();
+        if (data.data.vnp_TransactionStatus !== "00") {
+          window.location.href = "/checkout/fail";
+        }
+      } catch (error) {
+        console.error("Error verifying checksum:", error);
+        window.location.href = "/checkout/fail";
+      }
+    };
 
+    run();
     if (id) {
       setOrderId(id);
     } else window.location.href = "/checkout/fail";
@@ -29,21 +50,24 @@ export default function CheckoutSuccessPage() {
     try {
       if (order != null) {
         removeItem(order?.MaCTSP);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/donhang`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            MaDH: orderID,
-            MaCTSP: order?.MaCTSP,
-            SoLuong: order?.SoLuong,
-            MaTK_KH: order?.MaTK_KH,
-            MaVoucher: order?.MaVoucher || null,
-            DiaChi: order?.DiaChi,
-            SoDienThoai: order?.SoDienThoai,
-            TongTien: order?.TongTien,
-            TenNM: order?.TenNM,
-          }),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/donhang`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              MaDH: orderID,
+              MaCTSP: order?.MaCTSP,
+              SoLuong: order?.SoLuong,
+              MaTK_KH: order?.MaTK_KH,
+              MaVoucher: order?.MaVoucher || null,
+              DiaChi: order?.DiaChi,
+              SoDienThoai: order?.SoDienThoai,
+              TongTien: order?.TongTien,
+              TenNM: order?.TenNM,
+            }),
+          }
+        );
         const data = await response.json();
 
         if (data && data.statusCode === 201) {
@@ -72,8 +96,10 @@ export default function CheckoutSuccessPage() {
                 MaDH: orderID,
                 MaKH: order?.MaTK_KH,
                 SoTien: order?.TongTien,
-                PhuongThuc: searchParams.get("type"),
-                MaGD: searchParams.get("transactionId"),
+                PhuongThuc: searchParams.get("vnp_TxnRef") ? "VNPAY" : "PAYPAL",
+                MaGD: searchParams.get("transactionId")
+                  ? searchParams.get("transactionId")
+                  : searchParams.get("vnp_TxnRef"),
               }),
             }
           );
@@ -89,7 +115,7 @@ export default function CheckoutSuccessPage() {
     if (orderID) {
       createDonHang();
     }
-  });
+  }, [orderID]);
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-2xl mx-auto text-center">

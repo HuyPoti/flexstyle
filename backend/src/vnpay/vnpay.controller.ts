@@ -48,13 +48,12 @@ export class VNPAYController {
   //   return vnpResponse;
   // }
   @Get('vnpay-checksum')
-  async handleChecksum(@Res() res, @Query() query) {
+  async handleChecksum(@Query() query) {
     const result = await this.vnpay.verifyReturnUrl(query);
-    if (result.vnp_ResponseCode != '00') {
-      return res.redirect(`http://localhost:3000/checkout/fail`);
+    if (!result) {
+      throw new BadRequestException('Invalid checksum');
     }
-    return res.redirect(
-      `http://localhost:3000/checkout/success?type=VNPAY&orderID=${result.vnp_TxnRef}&transactionId=${result.vnp_TransactionNo}`,
-    );
+    
+    return result;
   }
 }
