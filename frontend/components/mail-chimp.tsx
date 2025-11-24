@@ -2,7 +2,7 @@ export default function MailChimp() {
   return (
     <div className="flex justify-center items-center py-8 px-2">
       <div
-        className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 border border-gray-100"
+        className="w-full max-w-md bg-white rounded-2xl mt-6"
         id="mc_embed_signup"
       >
         <form
@@ -15,10 +15,10 @@ export default function MailChimp() {
         >
           <div id="mc_embed_signup_scroll">
             <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">
-              Subscribe to our Flex Style
+              Đăng ký làm đối tác với Flex Style
             </h2>
             <p className="text-center text-gray-500 mb-4 text-sm">
-              Get the latest updates and offers.{" "}
+              Nhận các cập nhật và ưu đãi mới nhất.{" "}
               {/* <span className="text-red-500">*</span> Required */}
             </p>
             <div className="mb-4">
@@ -26,7 +26,7 @@ export default function MailChimp() {
                 htmlFor="mce-EMAIL"
                 className="block text-gray-700 font-medium mb-1"
               >
-                Email Address <span className="text-red-500">*</span>
+                Địa chỉ Email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -69,7 +69,7 @@ export default function MailChimp() {
               id="mc-embedded-subscribe"
               className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-semibold py-3 rounded-lg shadow-md transition duration-200 text-lg mt-2"
             >
-              Subscribe
+              Đăng ký làm đối tác với FlexStyle
             </button>
             <div className="flex justify-center mt-4">
               <a

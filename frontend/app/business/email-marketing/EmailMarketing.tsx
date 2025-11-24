@@ -192,9 +192,9 @@ const EmailMarketingAdmin = ({
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Subscribed Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
-                  </th>
+                  </th> */}
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -341,7 +341,7 @@ const EmailMarketingAdmin = ({
 
               <div className="p-6 space-y-4">
                 <p className="text-sm text-gray-600">
-                  Export user data with detailed information including id, email
+                  Export user data with detailed information including email
                   and subscriber date
                 </p>
 

@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
+import { formatCreatedAt } from 'utils/format';
 
 @Injectable()
 export class EmailmarketingService {
@@ -12,16 +13,16 @@ export class EmailmarketingService {
     });
 
     // Create CSV header
-    const headers = ['MaTK', 'Username', 'Email', 'VaiTro', 'created_at'];
+    const headers = ['Username', 'Email', 'created_at'];
 
     // Create CSV rows
     const rows = users.map((user) => {
       return [
-        `"${user.MaTK}"`,
+        // `"${user.MaTK}"`,
         `"${user.Username || ''}"`,
         `"${user.Email || ''}"`,
-        `"${user.VAITRO || ''}"`,
-        `"${user.created_at ? new Date(user.created_at).toLocaleDateString('vi-VN') : ''}"`,
+        // `"${user.VAITRO || ''}"`,
+        `"${user.created_at ? formatCreatedAt(new Date(user.created_at)) : ''}"`,
       ].join(',');
     });
 
@@ -37,14 +38,14 @@ export class EmailmarketingService {
     });
 
     // Create CSV header
-    const headers = ['ID', 'Email', 'Created Date'];
+    const headers = ['Email', 'Created Date'];
 
     // Create CSV rows
     const rows = emailmarketingUser.map((user) => {
       return [
-        `"${user.id}"`,
+        // `"${user.id}"`,
         `"${user.email || ''}"`,
-        `"${user.created_at ? new Date(user.created_at).toLocaleDateString('vi-VN') : ''}"`,
+        `"${user.created_at ? formatCreatedAt(new Date(user.created_at)) : ''}"`,
       ].join(',');
     });
 
