@@ -53,7 +53,10 @@ export class VNPAYController {
     if (!result) {
       throw new BadRequestException('Invalid checksum');
     }
-    
-    return result;
+    if (result && result.vnp_TransactionStatus === '00') {
+      return { message: 'Payment successful', data: result };
+    } else {
+      return { message: 'Payment failed', data: result };
+    }
   }
 }

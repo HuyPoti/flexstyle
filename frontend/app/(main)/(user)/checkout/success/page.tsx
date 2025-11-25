@@ -28,7 +28,10 @@ export default function CheckoutSuccessPage() {
           }
         );
         const data = await res.json();
-        if (data.data.vnp_TransactionStatus !== "00") {
+        if (data.message === "Payment successful") {
+          console.log("Payment verified successfully:", data);
+        } else {
+          console.error("Payment verification failed:", data);
           window.location.href = "/checkout/fail";
         }
       } catch (error) {
