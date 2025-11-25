@@ -431,7 +431,9 @@ export default function SlugPage({
           {/* Product Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold mb-2">{product.TenSP}</h1>
+              <h1 className="text-3xl font-bold mb-2">
+                {product.TenSP} lorem30
+              </h1>
 
               {/* Rating */}
               <div className="flex items-center space-x-2 mb-4">
@@ -611,7 +613,7 @@ export default function SlugPage({
                     className="w-full bg-transparent"
                   > */}
                   <div className="flex flex-row items-center justify-center border p-2 rounded-md">
-                    <FacebookIcon size={32} round />
+                    {/* <FacebookIcon size={32} round /> */}
                     Chia sẻ Facebook
                   </div>
 
@@ -648,8 +650,8 @@ export default function SlugPage({
                   > */}
                   {/* X logo simple SVG */}
                   <div className="flex flex-row items-center justify-center border p-2 rounded-md">
-                    <TwitterIcon size={32} round />
-                    Chia sẻ Facebook
+                    {/* <TwitterIcon size={32} round /> */}
+                    Chia sẻ Twitter
                   </div>
                 </TwitterShareButton>
               </div>
@@ -662,7 +664,7 @@ export default function SlugPage({
                 <div>
                   <p className="font-semibold text-sm">Giao hàng miễn phí</p>
                   <p className="text-xs text-muted-foreground">
-                    Đơn hàng trên 500k
+                    Những khách hàng thân thuộc
                   </p>
                 </div>
               </div>
@@ -717,6 +719,16 @@ export default function SlugPage({
                           <li>Form dáng chuẩn, tôn dáng người mặc</li>
                           <li>Dễ dàng phối đồ với nhiều trang phục khác</li>
                           <li>Chăm sóc đơn giản, giặt máy được</li>
+                          <li>
+                            Thân thiện với môi trường, sử dụng chất liệu tái chế
+                          </li>
+                          <li>Được sản xuất bởi các nhà thiết kế hàng đầu</li>
+                          <li>Phù hợp với mọi độ tuổi và giới tính</li>
+                          <li>
+                            Được kiểm tra chất lượng nghiêm ngặt trước khi xuất
+                            xưởng
+                          </li>
+                          <li>Hỗ trợ bảo hành sản phẩm trong vòng 1 năm</li>
                         </>
                       )}
                     </ul>
@@ -755,10 +767,255 @@ export default function SlugPage({
                     <div>
                       <h4 className="font-semibold mb-3">Hướng dẫn bảo quản</h4>
                       <div className="space-y-2 text-sm text-muted-foreground">
-                        <p>• Giặt máy ở nhiệt độ dưới 30°C</p>
-                        <p>• Không sử dụng chất tẩy</p>
-                        <p>• Phơi nơi thoáng mát, tránh ánh nắng trực tiếp</p>
-                        <p>• Ủi ở nhiệt độ thấp</p>
+                        <li>
+                          Không sử dụng chất tẩy rửa mạnh để tránh làm hỏng vải.
+                        </li>
+                        <li>
+                          Giặt sản phẩm bằng nước lạnh để giữ màu sắc lâu bền.
+                        </li>
+                        <li>
+                          Không vắt sản phẩm quá mạnh để tránh làm mất form
+                          dáng.
+                        </li>
+                        <li>
+                          Phơi sản phẩm trên bề mặt phẳng để tránh bị giãn.
+                        </li>
+                        <li>
+                          Tránh để sản phẩm tiếp xúc với ánh nắng mặt trời trực
+                          tiếp.
+                        </li>
+                        <li>
+                          Không sử dụng bàn ủi ở nhiệt độ cao trên các chi tiết
+                          in.
+                        </li>
+                        <li>
+                          Giặt sản phẩm ngay sau khi bị bẩn để tránh vết ố.
+                        </li>
+                        <li>
+                          Không sử dụng máy giặt chế độ mạnh để giặt sản phẩm.
+                        </li>
+                        <li>Phơi sản phẩm ở nơi thoáng mát, tránh ẩm ướt.</li>
+                        <li>
+                          Không để sản phẩm tiếp xúc với các vật sắc nhọn.
+                        </li>
+                        <li>
+                          Giặt riêng các sản phẩm có màu đậm để tránh lem màu.
+                        </li>
+                        <li>
+                          Không sử dụng nước xả vải có mùi quá nồng để tránh ảnh
+                          hưởng đến chất liệu.
+                        </li>
+                        <li>Ủi sản phẩm từ mặt trái để bảo vệ bề mặt vải.</li>
+                        <li>Không để sản phẩm trong túi nilon kín quá lâu.</li>
+                        <li>Giặt sản phẩm bằng dung dịch giặt nhẹ nhàng.</li>
+                        <li>Không sử dụng máy sấy để làm khô sản phẩm.</li>
+                        <li>
+                          Tránh để sản phẩm tiếp xúc với dầu mỡ hoặc hóa chất.
+                        </li>
+                        <li>
+                          Kiểm tra nhãn hướng dẫn giặt trước khi làm sạch sản
+                          phẩm.
+                        </li>
+                        <li>
+                          Bảo quản sản phẩm trong tủ quần áo khô ráo, thoáng
+                          mát.
+                        </li>
+                        <li>
+                          Không để sản phẩm tiếp xúc với lửa hoặc nhiệt độ cao.
+                        </li>
+                        <li>Giặt sản phẩm bằng tay để giữ độ bền lâu dài.</li>
+                        <li>
+                          Không sử dụng bàn chải cứng để chà xát sản phẩm.
+                        </li>
+                        <li>Phơi sản phẩm trên móc treo để giữ form dáng.</li>
+                        <li>Tránh để sản phẩm tiếp xúc với hóa chất mạnh.</li>
+                        <li>
+                          Không giặt sản phẩm cùng các vật dụng có khóa kéo.
+                        </li>
+                        <li>
+                          Ủi sản phẩm từ mặt trái để tránh làm hỏng bề mặt vải.
+                        </li>
+                        <li>
+                          Không để sản phẩm tiếp xúc trực tiếp với ánh nắng mặt
+                          trời quá lâu.
+                        </li>
+                        <li>
+                          Bảo quản sản phẩm trong túi vải để tránh bụi bẩn.
+                        </li>
+                        <li>
+                          Tránh giặt sản phẩm bằng nước nóng để bảo vệ chất
+                          liệu.
+                        </li>
+                        <li>Không sử dụng máy sấy để làm khô sản phẩm.</li>
+                        <li>Giặt sản phẩm bằng tay để giữ độ bền lâu dài.</li>
+                        <li>
+                          Không sử dụng bàn chải cứng để chà xát sản phẩm.
+                        </li>
+                        <li>Phơi sản phẩm trên móc treo để giữ form dáng.</li>
+                        <li>Tránh để sản phẩm tiếp xúc với hóa chất mạnh.</li>
+                        <li>
+                          Không giặt sản phẩm cùng các vật dụng có khóa kéo.
+                        </li>
+                        <li>
+                          Ủi sản phẩm từ mặt trái để tránh làm hỏng bề mặt vải.
+                        </li>
+                        <li>
+                          Không để sản phẩm tiếp xúc trực tiếp với ánh nắng mặt
+                          trời quá lâu.
+                        </li>
+                        <li>
+                          Bảo quản sản phẩm trong túi vải để tránh bụi bẩn.
+                        </li>
+                        <li>
+                          Không sử dụng chất tẩy rửa mạnh để tránh làm hỏng vải.
+                        </li>
+                        <li>
+                          Giặt sản phẩm bằng nước lạnh để giữ màu sắc lâu bền.
+                        </li>
+                        <li>
+                          Không vắt sản phẩm quá mạnh để tránh làm mất form
+                          dáng.
+                        </li>
+                        <li>
+                          Phơi sản phẩm trên bề mặt phẳng để tránh bị giãn.
+                        </li>
+                        <li>
+                          Tránh để sản phẩm tiếp xúc với ánh nắng mặt trời trực
+                          tiếp.
+                        </li>
+                        <li>
+                          Không sử dụng bàn ủi ở nhiệt độ cao trên các chi tiết
+                          in.
+                        </li>
+                        <li>
+                          Giặt sản phẩm ngay sau khi bị bẩn để tránh vết ố.
+                        </li>
+                        <li>
+                          Không sử dụng máy giặt chế độ mạnh để giặt sản phẩm.
+                        </li>
+                        <li>Phơi sản phẩm ở nơi thoáng mát, tránh ẩm ướt.</li>
+                        <li>
+                          Không để sản phẩm tiếp xúc với các vật sắc nhọn.
+                        </li>
+                        <li>
+                          Giặt riêng các sản phẩm có màu đậm để tránh lem màu.
+                        </li>
+                        <li>
+                          Không sử dụng nước xả vải có mùi quá nồng để tránh ảnh
+                          hưởng đến chất liệu.
+                        </li>
+                        <li>Ủi sản phẩm từ mặt trái để bảo vệ bề mặt vải.</li>
+                        <li>Không để sản phẩm trong túi nilon kín quá lâu.</li>
+                        <li>Giặt sản phẩm bằng dung dịch giặt nhẹ nhàng.</li>
+                        <li>Không sử dụng máy sấy để làm khô sản phẩm.</li>
+                        <li>
+                          Tránh để sản phẩm tiếp xúc với dầu mỡ hoặc hóa chất.
+                        </li>
+                        <li>
+                          Kiểm tra nhãn hướng dẫn giặt trước khi làm sạch sản
+                          phẩm.
+                        </li>
+                        <li>
+                          Bảo quản sản phẩm trong tủ quần áo khô ráo, thoáng
+                          mát.
+                        </li>
+                        <li>
+                          Không để sản phẩm tiếp xúc với lửa hoặc nhiệt độ cao.
+                        </li>
+                        <li>Giặt sản phẩm bằng tay để giữ độ bền lâu dài.</li>
+                        <li>
+                          Không sử dụng bàn chải cứng để chà xát sản phẩm.
+                        </li>
+                        <li>Phơi sản phẩm trên móc treo để giữ form dáng.</li>
+                        <li>Tránh để sản phẩm tiếp xúc với hóa chất mạnh.</li>
+                        <li>
+                          Không giặt sản phẩm cùng các vật dụng có khóa kéo.
+                        </li>
+                        <li>
+                          Ủi sản phẩm từ mặt trái để tránh làm hỏng bề mặt vải.
+                        </li>
+                        <li>
+                          Không để sản phẩm tiếp xúc trực tiếp với ánh nắng mặt
+                          trời quá lâu.
+                        </li>
+                        <li>
+                          Bảo quản sản phẩm trong túi vải để tránh bụi bẩn.
+                        </li>
+                        <li>
+                          Không sử dụng chất tẩy rửa mạnh để tránh làm hỏng vải.
+                        </li>
+                        <li>
+                          Giặt sản phẩm bằng nước lạnh để giữ màu sắc lâu bền.
+                        </li>
+                        <li>
+                          Không vắt sản phẩm quá mạnh để tránh làm mất form
+                          dáng.
+                        </li>
+                        <li>
+                          Phơi sản phẩm trên bề mặt phẳng để tránh bị giãn.
+                        </li>
+                        <li>
+                          Tránh để sản phẩm tiếp xúc với ánh nắng mặt trời trực
+                          tiếp.
+                        </li>
+                        <li>
+                          Không sử dụng bàn ủi ở nhiệt độ cao trên các chi tiết
+                          in.
+                        </li>
+                        <li>
+                          Giặt sản phẩm ngay sau khi bị bẩn để tránh vết ố.
+                        </li>
+                        <li>
+                          Không sử dụng máy giặt chế độ mạnh để giặt sản phẩm.
+                        </li>
+                        <li>Phơi sản phẩm ở nơi thoáng mát, tránh ẩm ướt.</li>
+                        <li>
+                          Không để sản phẩm tiếp xúc với các vật sắc nhọn.
+                        </li>
+                        <li>
+                          Giặt riêng các sản phẩm có màu đậm để tránh lem màu.
+                        </li>
+                        <li>
+                          Không sử dụng nước xả vải có mùi quá nồng để tránh ảnh
+                          hưởng đến chất liệu.
+                        </li>
+                        <li>Ủi sản phẩm từ mặt trái để bảo vệ bề mặt vải.</li>
+                        <li>Không để sản phẩm trong túi nilon kín quá lâu.</li>
+                        <li>Giặt sản phẩm bằng dung dịch giặt nhẹ nhàng.</li>
+                        <li>Không sử dụng máy sấy để làm khô sản phẩm.</li>
+                        <li>
+                          Tránh để sản phẩm tiếp xúc với dầu mỡ hoặc hóa chất.
+                        </li>
+                        <li>
+                          Kiểm tra nhãn hướng dẫn giặt trước khi làm sạch sản
+                          phẩm.
+                        </li>
+                        <li>
+                          Bảo quản sản phẩm trong tủ quần áo khô ráo, thoáng
+                          mát.
+                        </li>
+                        <li>
+                          Không để sản phẩm tiếp xúc với lửa hoặc nhiệt độ cao.
+                        </li>
+                        <li>Giặt sản phẩm bằng tay để giữ độ bền lâu dài.</li>
+                        <li>
+                          Không sử dụng bàn chải cứng để chà xát sản phẩm.
+                        </li>
+                        <li>Phơi sản phẩm trên móc treo để giữ form dáng.</li>
+                        <li>Tránh để sản phẩm tiếp xúc với hóa chất mạnh.</li>
+                        <li>
+                          Không giặt sản phẩm cùng các vật dụng có khóa kéo.
+                        </li>
+                        <li>
+                          Ủi sản phẩm từ mặt trái để tránh làm hỏng bề mặt vải.
+                        </li>
+                        <li>
+                          Không để sản phẩm tiếp xúc trực tiếp với ánh nắng mặt
+                          trời quá lâu.
+                        </li>
+                        <li>
+                          Bảo quản sản phẩm trong túi vải để tránh bụi bẩn.
+                        </li>
                       </div>
                     </div>
                   </div>
@@ -999,6 +1256,365 @@ export default function SlugPage({
             </div>
           </div>
         )}
+        <div className="space-y-4">
+          <h2 className="text-xl font-bold">Giới thiệu về FlexStyle</h2>
+          <p>
+            FlexStyle là thương hiệu thời trang hàng đầu, mang đến cho bạn những
+            sản phẩm chất lượng cao với thiết kế hiện đại và phong cách. Chúng
+            tôi luôn nỗ lực để đáp ứng mọi nhu cầu của khách hàng, từ chất liệu
+            đến kiểu dáng.
+          </p>
+          <p>
+            Với đội ngũ thiết kế chuyên nghiệp và quy trình sản xuất nghiêm
+            ngặt, FlexStyle cam kết mang đến cho bạn những sản phẩm không chỉ
+            đẹp mắt mà còn bền bỉ theo thời gian. Hãy để chúng tôi giúp bạn tự
+            tin hơn trong mọi hoàn cảnh.
+          </p>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Câu chuyện thương hiệu</h3>
+            <p>
+              FlexStyle được thành lập với sứ mệnh mang đến cho khách hàng những
+              sản phẩm thời trang chất lượng cao, phù hợp với mọi phong cách và
+              cá tính. Chúng tôi tự hào là thương hiệu thời trang hàng đầu, luôn
+              đổi mới và sáng tạo để đáp ứng nhu cầu ngày càng cao của khách
+              hàng.
+            </p>
+            <p>
+              Với đội ngũ thiết kế tài năng và quy trình sản xuất hiện đại, mỗi
+              sản phẩm của FlexStyle đều được chăm chút tỉ mỉ từ khâu ý tưởng
+              đến khi hoàn thiện. Chúng tôi không chỉ mang đến những bộ trang
+              phục đẹp mắt mà còn là sự kết hợp hoàn hảo giữa chất lượng và
+              phong cách.
+            </p>
+            <p>
+              FlexStyle luôn đặt khách hàng làm trung tâm trong mọi hoạt động.
+              Chúng tôi lắng nghe ý kiến của bạn để không ngừng cải thiện và
+              mang đến những trải nghiệm mua sắm tốt nhất. Hãy để FlexStyle đồng
+              hành cùng bạn trên hành trình thể hiện phong cách riêng.
+            </p>
+            <h3 className="text-lg font-semibold">Cam kết của chúng tôi</h3>
+            <p>
+              Chúng tôi cam kết sử dụng các chất liệu thân thiện với môi trường
+              và quy trình sản xuất bền vững. FlexStyle luôn hướng đến việc giảm
+              thiểu tác động tiêu cực đến môi trường, đồng thời mang lại giá trị
+              lâu dài cho cộng đồng.
+            </p>
+            <p>
+              Mỗi sản phẩm đều được kiểm tra nghiêm ngặt trước khi đến tay khách
+              hàng. Chúng tôi đảm bảo rằng bạn sẽ nhận được những sản phẩm hoàn
+              hảo nhất, từ chất lượng đến thiết kế. Sự hài lòng của bạn là động
+              lực để chúng tôi không ngừng phát triển.
+            </p>
+            <p>
+              FlexStyle không chỉ là một thương hiệu thời trang, mà còn là người
+              bạn đồng hành đáng tin cậy của bạn. Chúng tôi luôn sẵn sàng hỗ trợ
+              và giải đáp mọi thắc mắc của bạn trong suốt quá trình mua sắm.
+            </p>
+            <h3 className="text-lg font-semibold">Tầm nhìn và giá trị</h3>
+            <p>
+              Tầm nhìn của FlexStyle là trở thành thương hiệu thời trang được
+              yêu thích nhất, không chỉ tại Việt Nam mà còn trên toàn thế giới.
+              Chúng tôi tin rằng thời trang không chỉ là quần áo, mà còn là cách
+              bạn thể hiện bản thân và tạo dấu ấn riêng.
+            </p>
+            <p>
+              Giá trị cốt lõi của chúng tôi bao gồm sự sáng tạo, chất lượng và
+              sự tận tâm. Chúng tôi luôn nỗ lực để mang đến những sản phẩm độc
+              đáo, chất lượng cao và dịch vụ khách hàng xuất sắc. FlexStyle tin
+              rằng mỗi khách hàng đều xứng đáng nhận được những điều tốt đẹp
+              nhất.
+            </p>
+            <p>
+              Hãy cùng FlexStyle khám phá thế giới thời trang và tạo nên những
+              khoảnh khắc đáng nhớ. Chúng tôi luôn đồng hành cùng bạn trên hành
+              trình chinh phục mọi thử thách và tỏa sáng theo cách riêng của
+              bạn.
+            </p>
+            <h3 className="text-lg font-semibold">Lý do chọn FlexStyle</h3>
+            <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+              <li>
+                Chất lượng sản phẩm vượt trội, đảm bảo sự hài lòng tuyệt đối.
+              </li>
+              <li>Thiết kế đa dạng, phù hợp với mọi phong cách và cá tính.</li>
+              <li>Giá cả hợp lý, mang lại giá trị cao cho khách hàng.</li>
+              <li>Dịch vụ khách hàng tận tâm, luôn sẵn sàng hỗ trợ bạn.</li>
+              <li>Cam kết bảo vệ môi trường và phát triển bền vững.</li>
+              <li>
+                Thương hiệu uy tín, được khách hàng tin tưởng và yêu thích.
+              </li>
+              <li>
+                Chính sách đổi trả linh hoạt, mang lại sự an tâm khi mua sắm.
+              </li>
+              <li>
+                Đội ngũ nhân viên chuyên nghiệp, thân thiện và nhiệt tình.
+              </li>
+              <li>Luôn cập nhật xu hướng thời trang mới nhất.</li>
+              <li>Hỗ trợ giao hàng nhanh chóng và tiện lợi.</li>
+            </ul>
+            <h3 className="text-lg font-semibold">Cảm nhận từ khách hàng</h3>
+            <p>
+              "Tôi rất hài lòng với sản phẩm của FlexStyle. Chất lượng tuyệt
+              vời, thiết kế đẹp mắt và dịch vụ khách hàng rất chuyên nghiệp. Tôi
+              chắc chắn sẽ tiếp tục ủng hộ thương hiệu này." - Khách hàng A.
+            </p>
+            <p>
+              "FlexStyle thực sự là một thương hiệu thời trang đáng tin cậy. Tôi
+              rất ấn tượng với sự tận tâm và chu đáo của đội ngũ nhân viên. Sản
+              phẩm không chỉ đẹp mà còn rất bền." - Khách hàng B.
+            </p>
+            <p>
+              "Tôi đã mua rất nhiều sản phẩm từ FlexStyle và chưa bao giờ thất
+              vọng. Thời trang đẹp, giá cả hợp lý và dịch vụ tuyệt vời. Tôi rất
+              khuyến khích mọi người thử trải nghiệm." - Khách hàng C.
+            </p>
+          </div>
+          {/* Outfit Styling Tips */}
+          <div className="mt-12">
+            <h3 className="text-lg font-semibold">Hướng dẫn phối đồ</h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 list-disc list-inside text-muted-foreground mt-4">
+              <li>Phối áo thun trắng với quần jeans xanh cơ bản.</li>
+              <li>Kết hợp áo sơ mi kẻ caro với quần kaki tối màu.</li>
+              <li>Áo hoodie oversize đi cùng quần jogger.</li>
+              <li>Áo croptop phối với quần ống rộng.</li>
+              <li>Áo blazer khoác ngoài áo thun đơn giản.</li>
+              <li>Đầm midi kết hợp với giày sneaker trắng.</li>
+              <li>Áo len cổ lọ với chân váy chữ A.</li>
+              <li>Áo polo phối quần short kaki.</li>
+              <li>Áo tanktop và quần jeans rách.</li>
+              <li>Áo sơ mi trắng phối với chân váy đen cơ bản.</li>
+
+              <li>Áo cardigan dài khoác ngoài váy liền.</li>
+              <li>Áo bomber jacket với quần jeans skinny.</li>
+              <li>Áo sweater và quần tây dáng suông.</li>
+              <li>Đầm maxi kết hợp với sandal dây.</li>
+              <li>Áo khoác da với quần jeans tối màu.</li>
+              <li>Áo vest dáng rộng với quần ống loe.</li>
+              <li>Áo croptop với quần short lưng cao.</li>
+              <li>Áo sơ mi lụa với quần tây cao cấp.</li>
+              <li>Áo hoodie với chân váy xếp ly.</li>
+              <li>Áo thun in hình với quần cargo.</li>
+
+              <li>Áo denim jacket với váy body.</li>
+              <li>Áo phông form rộng phối quần legging.</li>
+              <li>Áo khoác gió với quần thể thao.</li>
+              <li>Áo sweater kẻ sọc với quần jean trắng.</li>
+              <li>Áo len mỏng với chân váy ngắn.</li>
+              <li>Áo blazer màu pastel với quần jean.</li>
+              <li>Váy hoa vintage kết hợp mũ beret.</li>
+              <li>Áo gile len với sơ mi trắng.</li>
+              <li>Áo cổ yếm với quần culottes.</li>
+              <li>Áo sát nách với chân váy midi.</li>
+
+              <li>Áo bomber phối hoodie bên trong.</li>
+              <li>Áo cardigan cài một nút với quần ống rộng.</li>
+              <li>Áo sơ mi sọc xanh với quần trắng.</li>
+              <li>Áo phao ngắn với quần skinny.</li>
+              <li>Áo denim với quần denim tông chồng tông.</li>
+              <li>Áo khoác trench coat cùng váy ôm.</li>
+              <li>Áo cổ tim với quần tây màu be.</li>
+              <li>Áo sweater in chữ và chân váy tennis.</li>
+              <li>Áo polo form slim với quần jeans.</li>
+              <li>Sơ mi đen với quần tây xám.</li>
+
+              <li>Hoodie màu pastel với quần trắng.</li>
+              <li>Áo blazer đen với áo cổ lọ trắng.</li>
+              <li>Áo tanktop đen với quần jogger xám.</li>
+              <li>Áo sơ mi sọc dọc với quần short jeans.</li>
+              <li>Áo khoác bomber da lộn với quần jeans xanh.</li>
+              <li>Áo thun xám với quần ống đứng.</li>
+              <li>Áo sweater cổ tròn với quần baggy.</li>
+              <li>Áo croptop ôm với quần legging.</li>
+              <li>Áo khoác tweed với chân váy tweed đồng bộ.</li>
+              <li>Áo thun form regular với quần chino.</li>
+
+              <li>Áo hoodie đen với quần jeans xám.</li>
+              <li>Áo phông trắng với chân váy denim.</li>
+              <li>Áo len oversize với quần tây.</li>
+              <li>Áo cardigan croptop với quần ống loe.</li>
+              <li>Áo khoác varsity với quần jeans.</li>
+              <li>Áo sơ mi linen với quần short.</li>
+              <li>Váy suông tối màu với giày sneaker chunky.</li>
+              <li>Áo phông graphic với quần baggy.</li>
+              <li>Áo blazer beige với chân váy bút chì.</li>
+              <li>Áo cổ vuông với quần jeans ống rộng.</li>
+
+              <li>Áo hoodie beige với quần ống đứng nâu.</li>
+              <li>Áo cardigan lửng với chân váy xếp ly dài.</li>
+              <li>Áo sơ mi đen với chân váy da.</li>
+              <li>Áo croptop thể thao với quần jogger.</li>
+              <li>Áo khoác bomber ngắn với váy ôm dài.</li>
+              <li>Áo sweater đỏ với quần jean đen.</li>
+              <li>Áo blazer kẻ caro với quần tây đen.</li>
+              <li>Áo sơ mi trắng oversize với quần short biker.</li>
+              <li>Áo thun đen với quần jeans trắng.</li>
+              <li>Áo croptop denim với chân váy denim.</li>
+
+              <li>Áo cardigan dáng dài với quần skinny.</li>
+              <li>Váy liền họa tiết với áo khoác jean.</li>
+              <li>Áo polo rộng với quần jogger.</li>
+              <li>Áo len cổ lọ với quần jeans mom.</li>
+              <li>Áo blazer đen với váy midi.</li>
+              <li>Áo sweater pastel với chân váy lụa.</li>
+              <li>Áo khoác bomber xanh olive với quần kaki.</li>
+              <li>Áo sơ mi basic với quần baggy đen.</li>
+              <li>Áo hoodie trắng với quần jeans xanh nhạt.</li>
+              <li>Áo phông vintage với quần ống suông.</li>
+
+              <li>Áo dệt kim ôm với chân váy ngắn chữ A.</li>
+              <li>Áo khoác gile phao với hoodie bên trong.</li>
+              <li>Áo blazer pastel với váy body ngắn.</li>
+              <li>Áo sweater cổ lọ với chân váy da.</li>
+              <li>Áo thun cổ tim với quần short vải.</li>
+              <li>Áo cardigan họa tiết với quần jeans đơn giản.</li>
+              <li>Áo sơ mi denim với quần linen.</li>
+              <li>Áo khoác len dày với váy maxi.</li>
+              <li>Áo croptop trắng với quần ống rộng kem.</li>
+              <li>Áo polo đen với quần tây trắng.</li>
+              <li>Áo blazer dáng dài với quần jean rách nhẹ.</li>
+              <li>Áo hoodie tím pastel cùng quần trắng ống suông.</li>
+              <li>Áo gile dệt kim với váy xếp ly dài.</li>
+              <li>Áo cổ lọ mỏng với áo khoác da ngoài.</li>
+              <li>Áo tanktop trắng với quần jeans xanh đậm.</li>
+              <li>Áo sơ mi họa tiết nhỏ với quần tây đen.</li>
+              <li>Áo len mỏng form rộng với quần short kaki.</li>
+              <li>Áo phông vintage với chân váy midi hoa.</li>
+              <li>Áo khoác dù với quần jean skinny.</li>
+              <li>Áo polo pastel với quần baggy jean.</li>
+
+              <li>Áo sơ mi linen trắng với chân váy kaki.</li>
+              <li>Áo khoác bomber kẻ với quần tây xám.</li>
+              <li>Áo vest lửng với quần jean cạp cao.</li>
+              <li>Áo croptop ren với chân váy ôm.</li>
+              <li>Áo thun đen đơn giản với chân váy xếp ly ngắn.</li>
+              <li>Áo sơ mi cổ nơ với váy midi.</li>
+              <li>Áo cardigan basic với quần jean tối màu.</li>
+              <li>Áo khoác tweed sáng màu với quần ống đứng.</li>
+              <li>Áo len cổ tròn với quần short jeans.</li>
+              <li>Áo thun kẻ ngang với quần chinos be.</li>
+
+              <li>Áo hoodie xanh rêu với quần jogger đen.</li>
+              <li>Áo blazer xanh navy với áo thun bên trong.</li>
+              <li>Áo sơ mi cotton với quần short lưng cao.</li>
+              <li>Áo sweater dày với quần jean trắng ống đứng.</li>
+              <li>Áo phông trơn với váy bút chì.</li>
+              <li>Áo croptop nhung với quần da.</li>
+              <li>Áo cổ vuông với chân váy hoa vintage.</li>
+              <li>Áo cardigan màu kem với quần linen trắng.</li>
+              <li>Áo sơ mi caro đỏ với quần jean đen.</li>
+              <li>Áo khoác phao dài với legging đen.</li>
+
+              <li>Áo hoodie cam với quần jean xanh.</li>
+              <li>Áo thun in chữ với quần tây suông.</li>
+              <li>Áo blazer sọc dọc với váy ôm dài.</li>
+              <li>Áo len họa tiết với quần jean baggy.</li>
+              <li>Áo khoác denim đen với váy xếp ly.</li>
+              <li>Áo sơ mi cổ rộng với quần ống loe.</li>
+              <li>Áo tanktop ôm với chân váy tennis.</li>
+              <li>Áo polo trắng với quần kaki nâu.</li>
+              <li>Áo khoác bomber đen với váy body.</li>
+              <li>Áo cardigan mảnh với quần jeans bạc màu.</li>
+
+              <li>Áo sweater kem với quần da đen.</li>
+              <li>Áo thun cổ lọ với chân váy xòe.</li>
+              <li>Áo blazer đen dài với quần jeans xanh nhạt.</li>
+              <li>Áo hoodie xám với quần short thể thao.</li>
+              <li>Áo cardigan dài với váy maxi boho.</li>
+              <li>Áo phông xám với quần tây xanh navy.</li>
+              <li>Áo sơ mi xanh pastel với quần jean trắng.</li>
+              <li>Áo khoác varsity xanh với chân váy ngắn.</li>
+              <li>Áo tanktop đen với quần short da.</li>
+              <li>Áo len cổ lọ mỏng với quần jean đậm.</li>
+
+              <li>Áo sơ mi denim đen với quần jogger.</li>
+              <li>Áo blazer hồng pastel với quần trắng.</li>
+              <li>Áo khoác gió xám với chân váy chữ A.</li>
+              <li>Áo sweater croptop với quần ống loe.</li>
+              <li>Áo thun họa tiết với quần culottes.</li>
+              <li>Áo cardigan dệt kim với váy midi xếp ly.</li>
+              <li>Áo hoodie graphic với quần jeans sáng.</li>
+              <li>Áo sơ mi lụa đen với quần suông trắng.</li>
+              <li>Áo tanktop pastel với chân váy hoa.</li>
+              <li>Áo blazer dày với quần baggy đen.</li>
+
+              <li>Áo phông pastel với quần jean rách gối.</li>
+              <li>Áo cardigan xanh biển với váy suông.</li>
+              <li>Áo khoác phao ngắn với váy midi ôm.</li>
+              <li>Áo croptop cotton với quần wide leg.</li>
+              <li>Áo sơ mi cổ tròn với chân váy maxi.</li>
+              <li>Áo hoodie đỏ với quần thể thao xám.</li>
+              <li>Áo sweater màu be với quần jeans đen.</li>
+              <li>Áo blazer caro với váy midi.</li>
+              <li>Áo polo đen với quần jean xanh đậm.</li>
+              <li>Áo cardigan đen với chân váy da.</li>
+
+              <li>Áo len oversize với quần legging da.</li>
+              <li>Áo sơ mi ngắn tay với quần short jean.</li>
+              <li>Áo thun ôm với váy xòe ngắn.</li>
+              <li>Áo khoác da nâu với quần jean xanh.</li>
+              <li>Áo cardigan croptop với váy mini.</li>
+              <li>Áo hoodie basic với quần ống đứng.</li>
+              <li>Áo blazer béo với quần short lưng cao.</li>
+              <li>Áo phông vải dày với quần tây ống rộng.</li>
+              <li>Áo sơ mi caro xanh với váy midi đen.</li>
+              <li>Áo sweater trắng với quần jean loe.</li>
+
+              <li>Áo khoác dạ dài với váy ôm body.</li>
+              <li>Áo len cổ lọ với quần kaki nâu.</li>
+              <li>Áo cardigan dài mỏng với váy hoa.</li>
+              <li>Áo blazer pastel với quần jean rách.</li>
+              <li>Áo sơ mi ren với váy xếp pli.</li>
+              <li>Áo hoodie navy với quần jean xám.</li>
+              <li>Áo cardigan basic với quần da đen.</li>
+              <li>Áo tanktop basic với quần jogger.</li>
+              <li>Áo sweater màu xanh lá với quần đen.</li>
+              <li>Áo thun trắng form rộng với chân váy midi.</li>
+
+              <li>Áo vest đen với quần skinny đen.</li>
+              <li>Áo cardigan gile với sơ mi trắng.</li>
+              <li>Áo blazer trắng với quần trắng.</li>
+              <li>Áo len tím với quần jean lửng.</li>
+              <li>Áo khoác dù đen với legging.</li>
+              <li>Áo phông họa tiết retro với quần ống rộng.</li>
+              <li>Áo sơ mi xanh navy với chân váy trắng.</li>
+              <li>Áo len mỏng pastel với quần kaki sáng.</li>
+              <li>Áo blazer cao cấp với quần jean tối.</li>
+              <li>Áo hoodie oversize với chân váy mini.</li>
+
+              <li>Áo corset với quần jean cạp cao.</li>
+              <li>Áo sweater croptop với chân váy tennis.</li>
+              <li>Áo cardigan cổ tim với quần jean trắng.</li>
+              <li>Áo sơ mi hoa nhí với quần linen.</li>
+              <li>Áo blazer dáng ngắn với váy midi ôm.</li>
+              <li>Áo hoodie đen với váy da ngắn.</li>
+              <li>Áo dệt kim form ôm với quần culottes.</li>
+              <li>Áo phông đen với quần short trắng.</li>
+              <li>Áo blazer cam với quần jean be.</li>
+              <li>Áo sơ mi pastel với chân váy bút chì.</li>
+
+              <li>Áo sweater vặn thừng với quần jean sáng.</li>
+              <li>Áo cardigan trắng với váy midi hoa.</li>
+              <li>Áo tanktop cam với quần jean loe.</li>
+              <li>Áo blazer nâu với quần tây be.</li>
+              <li>Áo hoodie xanh lá pastel với quần trắng.</li>
+              <li>Áo sơ mi denim sáng với chân váy đen.</li>
+              <li>Áo cardigan đen croptop với quần jean đen.</li>
+              <li>Áo khoác gió pastel với quần jogger trắng.</li>
+              <li>Áo sweater graphite với váy midi.</li>
+              <li>Áo vải thô cổ vuông với quần jean ống rộng.</li>
+
+              <li>Áo polo màu kem với quần da nâu.</li>
+              <li>Áo blazer lửng với quần short jean.</li>
+              <li>Áo cardigan dài len mỏng với quần kaki.</li>
+              <li>Áo sơ mi trắng form rộng với váy xếp ly dài.</li>
+              <li>Áo tanktop lụa với quần baggy.</li>
+              <li>Áo hoodie vintage với quần jean wash.</li>
+              <li>Áo sweater đen với quần jean xám nhạt.</li>
+              <li>Áo blazer ánh kim với váy body.</li>
+              <li>Áo cardigan pastel với chân váy xòe.</li>
+              <li>Áo phông trắng kết hợp quần jean đen basic.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </>
   );
