@@ -8,9 +8,9 @@ import Image from "next/image";
 // import Head from "next/head";
 import Link from "next/link";
 import {
-  FacebookIcon,
+  // FacebookIcon,
   FacebookShareButton,
-  TwitterIcon,
+  // TwitterIcon,
   TwitterShareButton,
 } from "react-share";
 import {
@@ -1353,19 +1353,19 @@ export default function SlugPage({
             </ul>
             <h3 className="text-lg font-semibold">Cảm nhận từ khách hàng</h3>
             <p>
-              "Tôi rất hài lòng với sản phẩm của FlexStyle. Chất lượng tuyệt
+              Tôi rất hài lòng với sản phẩm của FlexStyle. Chất lượng tuyệt
               vời, thiết kế đẹp mắt và dịch vụ khách hàng rất chuyên nghiệp. Tôi
-              chắc chắn sẽ tiếp tục ủng hộ thương hiệu này." - Khách hàng A.
+              chắc chắn sẽ tiếp tục ủng hộ thương hiệu này. - Khách hàng A.
             </p>
             <p>
-              "FlexStyle thực sự là một thương hiệu thời trang đáng tin cậy. Tôi
+              FlexStyle thực sự là một thương hiệu thời trang đáng tin cậy. Tôi
               rất ấn tượng với sự tận tâm và chu đáo của đội ngũ nhân viên. Sản
-              phẩm không chỉ đẹp mà còn rất bền." - Khách hàng B.
+              phẩm không chỉ đẹp mà còn rất bền. - Khách hàng B.
             </p>
             <p>
-              "Tôi đã mua rất nhiều sản phẩm từ FlexStyle và chưa bao giờ thất
+              Tôi đã mua rất nhiều sản phẩm từ FlexStyle và chưa bao giờ thất
               vọng. Thời trang đẹp, giá cả hợp lý và dịch vụ tuyệt vời. Tôi rất
-              khuyến khích mọi người thử trải nghiệm." - Khách hàng C.
+              khuyến khích mọi người thử trải nghiệm. - Khách hàng C.
             </p>
           </div>
           {/* Outfit Styling Tips */}
