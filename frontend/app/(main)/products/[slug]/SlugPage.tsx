@@ -599,34 +599,72 @@ export default function SlugPage({
                 </Button>
               </div>
               <div className="flex space-x-3">
-                <FacebookShareButton
-                  url={productUrl}
-                  title={product.TenSP}
-                  hashtag="#FlexStyle"
-                  className="flex-1"
-                >
-                  {/* <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full bg-transparent"
-                  > */}
-                  <div className="flex flex-row items-center justify-center border p-2 rounded-md">
-                    {/* <FacebookIcon size={32} round /> */}
-                    Chia sẻ Facebook
-                  </div>
+                <div className="flex space-x-3">
+                  {/* FACEBOOK */}
+                  <FacebookShareButton
+                    url={productUrl}
+                    title={product.TenSP}
+                    hashtag="#FlexStyle"
+                    className="flex-1"
+                  >
+                    <div
+                      className="
+                        flex flex-row items-center justify-center 
+                        gap-2 border p-2 rounded-md
+                        transition-all duration-200
+                        hover:bg-blue-600 hover:text-white
+                        hover:border-blue-600
+                        cursor-pointer select-none
+                      "
+                    >
+                      {/* Facebook Icon */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.325 
+                        24h11.494v-9.294H9.691v-3.622h3.128V8.413c0-3.1 1.893-4.788 
+                        4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 
+                        0-1.796.715-1.796 1.764v2.314h3.587l-.467 3.622h-3.12V24h6.116C23.403 
+                        24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
+                      </svg>
 
-                  {/* </Button> */}
-                </FacebookShareButton>
+                      Chia sẻ Facebook
+                    </div>
+                  </FacebookShareButton>
 
+                {/* X (TWITTER) */}
                 <TwitterShareButton
                   url={productUrl}
                   title={product.TenSP}
                   className="flex-1"
                 >
-                  {/* X logo simple SVG */}
-                  <div className="flex flex-row items-center justify-center border p-2 rounded-md">
-                    {/* <TwitterIcon size={32} round /> */}
-                    Chia sẻ Twitter
+                  <div
+                    className="
+                      flex flex-row items-center justify-center 
+                      gap-2 border p-2 rounded-md
+                      transition-all duration-200
+                      hover:bg-black hover:text-white
+                      hover:border-black
+                      cursor-pointer select-none
+                  "
+                >
+                    {/* X Icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M18.244 2H21.5l-7.4 8.466L23 22h-7.682l-5.01-6.527L4.4 
+                      22H1.143l7.93-9.066L1 2h7.74l4.56 6.038L18.244 2z" />
+                    </svg>
+
+                    Chia sẻ X
                   </div>
                 </TwitterShareButton>
               </div>
