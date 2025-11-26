@@ -909,7 +909,7 @@ export default function SlugPage({
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Sản phẩm <strong>{product.TenSP}</strong> được chế tác từ những chất liệu cao cấp, được tuyển chọn kỹ lưỡng để đảm bảo sự thoải mái tối đa cho người mặc. 
                 Chúng tôi ưu tiên các loại vải có độ bền cao, khả năng giữ form tốt và an toàn cho làn da.
-                Dù là chất liệu tự nhiên hay tổng hợp, FlexStyle luôn đặt tiêu chí "Cảm giác người dùng" lên hàng đầu, giúp bạn luôn cảm thấy tự tin và dễ chịu trong mọi hoạt động.
+                Dù là chất liệu tự nhiên hay tổng hợp, FlexStyle luôn đặt tiêu chí &quot;Cảm giác người dùng&quot; lên hàng đầu, giúp bạn luôn cảm thấy tự tin và dễ chịu trong mọi hoạt động.
               </p>
             </div>
             <div>
@@ -930,7 +930,7 @@ export default function SlugPage({
             <div>
               <h3 className="font-semibold text-lg mb-3">Chất lượng vượt trội & Kiểm định nghiêm ngặt</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Tại FlexStyle, "chất lượng" không chỉ là một lời hứa, mà là tôn chỉ hoạt động. Chúng tôi cam kết mang đến những sản phẩm thời trang chất lượng cao nhất thị trường. 
+                Tại FlexStyle, &quot;chất lượng&quot; không chỉ là một lời hứa, mà là tôn chỉ hoạt động. Chúng tôi cam kết mang đến những sản phẩm thời trang chất lượng cao nhất thị trường. 
                 Mỗi sản phẩm <strong>{product.TenSP}</strong> đều phải trải qua quy trình kiểm tra chất lượng (QC) 3 bước nghiêm ngặt: kiểm tra nguyên liệu đầu vào, kiểm tra bán thành phẩm và kiểm tra thành phẩm cuối cùng.
                 Chúng tôi sử dụng các chất liệu vải cao cấp, được nhập khẩu từ các nhà cung cấp uy tín, đảm bảo độ bền màu, không bai dão và an toàn tuyệt đối cho làn da nhạy cảm.
               </p>
@@ -1051,7 +1051,7 @@ export default function SlugPage({
             <div>
               <h3 className="font-semibold text-lg mb-3">Sự lựa chọn tinh tế</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Bạn đang tìm kiếm một món quà vừa thiết thực vừa thời trang cho người thân, bạn bè hay "người ấy"? 
+                Bạn đang tìm kiếm một món quà vừa thiết thực vừa thời trang cho người thân, bạn bè hay &quot;người ấy&quot;? 
                 <strong>{product.TenSP}</strong> chính là câu trả lời hoàn hảo. 
                 Với thiết kế hiện đại, dễ mặc và chất lượng cao cấp, đây là món quà thể hiện sự quan tâm tinh tế của bạn đến phong cách và sự thoải mái của người nhận.
               </p>
@@ -1074,7 +1074,7 @@ export default function SlugPage({
             <div className="border rounded-lg p-4 bg-background">
               <h3 className="font-semibold mb-2">Làm sao để chọn size {product.TenSP} phù hợp nhất?</h3>
               <p className="text-muted-foreground">
-                Để chọn được size vừa vặn nhất, bạn vui lòng tham khảo "Bảng quy đổi kích cỡ" chi tiết được đặt ngay bên cạnh phần chọn size. 
+                Để chọn được size vừa vặn nhất, bạn vui lòng tham khảo &quot;Bảng quy đổi kích cỡ&quot; chi tiết được đặt ngay bên cạnh phần chọn size. 
                 Bảng size của chúng tôi được xây dựng dựa trên số đo chuẩn của người Việt Nam.
                 Nếu bạn vẫn còn phân vân giữa hai size, hoặc có số đo đặc biệt, đừng ngần ngại nhắn tin trực tiếp cho đội ngũ tư vấn viên của FlexStyle. 
                 Chúng tôi sẽ dựa trên chiều cao, cân nặng và sở thích mặc (ôm body hay rộng rãi) để tư vấn size chính xác nhất cho bạn.

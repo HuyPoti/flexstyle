@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 import { Product, Category } from "@/lib/types";
-import { Separator } from "@/components/ui/separator";
 import { Gem } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 export default function PhuKienPage({
@@ -168,23 +167,6 @@ export default function PhuKienPage({
         <Button variant="outline" onClick={addMore}>
           Xem thêm
         </Button>
-      </div>
-      {/* Newsletter Section */}
-      <Separator className="my-12" />
-      <div className="text-center">
-        <h3 className="text-2xl font-bold mb-4">Xu hướng phụ kiện mới nhất</h3>
-        <p className="text-muted-foreground mb-6">
-          Đăng ký để nhận thông tin về các bộ sưu tập phụ kiện và ưu đãi đặc
-          biệt
-        </p>
-        <div className="flex max-w-md mx-auto gap-2">
-          <input
-            type="email"
-            placeholder="Nhập email của bạn"
-            className="flex-1 px-4 py-2 border rounded-lg"
-          />
-          <Button>Đăng ký</Button>
-        </div>
       </div>
     </div>
   );
