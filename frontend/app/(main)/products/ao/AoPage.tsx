@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Users } from "lucide-react";
 import { Category, Product } from "@/lib/types";
 import { v4 as uuidv4 } from "uuid";
@@ -172,25 +171,6 @@ export default function AoPage({
         <Button variant="outline" onClick={addMore}>
           Xem thêm
         </Button>
-      </div>
-      {/* Newsletter Section */}
-      <Separator className="my-12" />
-      <div className="text-center">
-        <h3 className="text-2xl font-bold mb-4">
-          Xu hướng thời trang nam mới nhất
-        </h3>
-        <p className="text-muted-foreground mb-6">
-          Đăng ký để nhận thông tin về các bộ sưu tập và ưu đãi dành riêng cho
-          nam giới
-        </p>
-        <div className="flex max-w-md mx-auto gap-2">
-          <input
-            type="email"
-            placeholder="Nhập email của bạn"
-            className="flex-1 px-4 py-2 border rounded-lg"
-          />
-          <Button>Đăng ký</Button>
-        </div>
       </div>
     </div>
   );
