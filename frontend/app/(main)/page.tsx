@@ -80,7 +80,7 @@ async function getProducts() {
 export default async function MainCarousel() {
   const products = await getProducts();
   const userId = await getUserId();
-  console.log("Có load");
+  // console.log("Có load");
   let gioHang = { data: [] };
   // let notificationsVoucher: Voucher[] = [];
   // let notificationsSukienuudai: SuKienUuDai[] = [];

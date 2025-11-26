@@ -27,7 +27,7 @@ export default function ProtectedRoute({
     const checkAuth = async () => {
       try {
         // Check if user is logged in
-        console.log("Checking authentication...");
+        // console.log("Checking authentication...");
         const {
           data: { session },
         } = await supabase.auth.getSession();
@@ -41,7 +41,7 @@ export default function ProtectedRoute({
         }
 
         const user = session.user;
-        console.log("Authenticated user:", user);
+        // console.log("Authenticated user:", user);
         const accessToken = session.access_token;
 
         // Fetch user info from backend
@@ -53,7 +53,7 @@ export default function ProtectedRoute({
         );
 
         const role = res.data.data.VAITRO;
-        console.log("User role from backend:", role);
+        // console.log("User role from backend:", role);
         // Allow if not in blockedRoles
         if (Role === role) {
           setAuthorized(true);

@@ -28,14 +28,10 @@ export default function CheckoutSuccessPage() {
           }
         );
         const data = await res.json();
-        console.log("Checksum verification response:", data);
-        console.log("Checksum verification response data:", data.data);
-        // if (data.message === "Payment successful") {
-        //   console.log("Payment verified successfully:", data);
-        // } else {
-        //   console.error("Payment verification failed:", data);
-        //   window.location.href = "/checkout/fail";
-        // }
+        // console.log("Checksum verification response data:", data.data);
+        if (data.data.message !=="Payment successful") {
+          window.location.href = "/checkout/fail";
+        }
       } catch (error) {
         console.error("Error verifying checksum:", error);
         window.location.href = "/checkout/fail";

@@ -36,7 +36,7 @@ export default function MessengerButton() {
       id="fb-chat-btn"
       href="#"
       aria-label="Chat Facebook"
-      className="fixed bottom-24 right-6 z-[9999] w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg flex items-center justify-center transition-all duration-300"
+      className="fixed bottom-4 left-6 z-[9999] w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg flex items-center justify-center transition-all duration-300"
     >
       {/* Icon Messenger SVG */}
       <svg
