@@ -29,7 +29,7 @@ export default function CheckoutSuccessPage() {
         );
         const data = await res.json();
         // console.log("Checksum verification response data:", data.data);
-        if (data.data.message !=="Payment successful") {
+        if (data.data.message !== "Payment successful") {
           window.location.href = "/checkout/fail";
         }
       } catch (error) {
@@ -37,8 +37,7 @@ export default function CheckoutSuccessPage() {
         window.location.href = "/checkout/fail";
       }
     };
-
-    run();
+    if (searchParams.get("vnp_TxnRef")) run();
     if (id) {
       setOrderId(id);
     } else window.location.href = "/checkout/fail";
