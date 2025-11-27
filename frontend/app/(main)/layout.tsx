@@ -5,7 +5,7 @@ import { CartProvider } from "@/contexts/cart-context";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Analytics } from "@vercel/analytics/next";
-// import ChatWidget from "@/components/chat-widget";
+import ChatWidget from "@/components/chat-widget";
 import { SuKienUuDaiProvider } from "@/contexts/sukienuudai-context";
 import ProtectedRoute from "@/components/protected-route";
 
@@ -140,14 +140,14 @@ export default async function layout({
                   {children}
                   <Footer />
                   {process.env.NODE_ENV === "production" ? <Analytics /> : null}
-                  {/* <ChatWidget
+                  <ChatWidget
                     config={{
                       chatUrl: process.env.N8N_CHAT_URL || "",
                       supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || "",
                       supabaseServiceRoleKey:
                         process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || "",
                     }}
-                  /> */}
+                  />
                   <MessengerButton />
 
                   {talkto()}
