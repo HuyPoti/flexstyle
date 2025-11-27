@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 export default function MessengerButton() {
   useEffect(() => {
-    const pageLink = "https://m.me/830983013435196"; // 🔁 thay bằng link m.me của fanpage bạn
+    const pageLink = "https://m.me/830983013435196";
     const btn = document.getElementById("fb-chat-btn");
 
     if (!btn) return;
