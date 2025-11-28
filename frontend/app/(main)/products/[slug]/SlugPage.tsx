@@ -1198,6 +1198,84 @@ export default function SlugPage({
           </p>
         </section>
 
+        {/* Fashion Trends & Styling Advice - SEO Content */}
+        <section className="mb-16 py-8 px-6 bg-muted/10 rounded-lg">
+          <h2 className="text-2xl font-bold mb-6">Xu hướng thời trang & Tư vấn phối đồ chuyên sâu</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Quy tắc phối màu (Color Coordination)</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Khi phối đồ với <strong>{product.TenSP}</strong>, việc nắm vững quy tắc bánh xe màu sắc là vô cùng hữu ích. 
+                Bạn có thể áp dụng quy tắc phối màu tương đồng (Analogous) để tạo nên sự hài hòa, nhẹ nhàng, hoặc phối màu tương phản (Complementary) để tạo điểm nhấn ấn tượng. 
+                Ví dụ, nếu sản phẩm có tông màu trung tính (đen, trắng, xám, be), bạn có thể dễ dàng kết hợp với bất kỳ màu sắc nào khác. 
+                Ngược lại, nếu sản phẩm có màu sắc nổi bật, hãy tiết chế bằng cách kết hợp với các item màu đơn sắc để tổng thể trang phục không bị rối mắt.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Nghệ thuật Layering (Phối lớp)</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Layering là chìa khóa để biến hóa trang phục trở nên thú vị hơn. 
+                Với <strong>{product.TenSP}</strong>, bạn có thể thử nghiệm mặc bên trong áo khoác denim, blazer hoặc cardigan mỏng tùy theo thời tiết. 
+                Đừng quên chú ý đến độ dày mỏng của từng lớp áo để đảm bảo sự thoải mái và không làm mất đi form dáng của sản phẩm chính. 
+                Sự kết hợp khéo léo giữa các lớp trang phục (textures) khác nhau cũng sẽ giúp outfit của bạn trông có chiều sâu và sành điệu hơn.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Phụ kiện - Điểm nhấn hoàn hảo</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Đừng bao giờ đánh giá thấp sức mạnh của phụ kiện. Một chiếc đồng hồ, dây chuyền mảnh hay một chiếc mũ lưỡi trai phù hợp có thể nâng tầm set đồ với <strong>{product.TenSP}</strong> lên một đẳng cấp mới. 
+                Tuy nhiên, hãy nhớ quy tắc &quot;Less is More&quot; - đừng lạm dụng quá nhiều phụ kiện khiến tổng thể trở nên rườm rà. 
+                Hãy chọn những món phụ kiện phản ánh đúng cá tính và phong cách mà bạn đang hướng tới.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Material Dictionary - SEO Content */}
+        <section className="mb-16 py-8 px-6 bg-background border rounded-lg shadow-sm">
+          <h2 className="text-2xl font-bold mb-6">Từ điển chất liệu & Công nghệ dệt may</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="font-semibold text-lg mb-3">Cotton - Vua của các loại vải</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Cotton là chất liệu tự nhiên phổ biến nhất trong ngành thời trang nhờ khả năng thấm hút mồ hôi tuyệt vời và độ thoáng khí cao. 
+                Sợi cotton mềm mại, thân thiện với làn da, đặc biệt phù hợp với khí hậu nhiệt đới nóng ẩm. 
+                Tại FlexStyle, chúng tôi sử dụng các loại cotton cao cấp (như Cotton USA, Cotton Pima) để đảm bảo độ bền và hạn chế tình trạng xù lông sau thời gian dài sử dụng.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg mb-3">Polyester & Spandex - Sự bền bỉ và đàn hồi</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Polyester mang lại độ bền vượt trội, khả năng chống nhăn và giữ màu tốt, trong khi Spandex (Elastane) cung cấp độ co giãn cần thiết cho sự vận động thoải mái. 
+                Sự pha trộn tỷ lệ vàng giữa các loại sợi này trong <strong>{product.TenSP}</strong> giúp sản phẩm vừa giữ được form dáng đứng form, vừa mang lại cảm giác dễ chịu khi mặc. 
+                Công nghệ dệt hiện đại giúp vải có bề mặt mịn màng và khả năng kháng khuẩn, khử mùi hiệu quả.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Detailed Shipping Policy - SEO Content */}
+        <section className="mb-16 py-8 px-6 bg-muted/10 rounded-lg">
+          <h2 className="text-2xl font-bold mb-6">Chi tiết chính sách vận chuyển & Đóng gói</h2>
+          <div className="space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              FlexStyle hiểu rằng cảm giác chờ đợi món đồ yêu thích thật sự rất hồi hộp. 
+              Vì vậy, chúng tôi đã tối ưu hóa quy trình kho vận để đảm bảo đơn hàng được xử lý nhanh nhất có thể. 
+              Ngay khi bạn đặt hàng thành công, hệ thống sẽ tự động chuyển yêu cầu đến kho gần nhất. 
+              Nhân viên kho sẽ tiến hành nhặt hàng, kiểm tra kỹ lưỡng lần cuối (QC) và đóng gói cẩn thận.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Quy cách đóng gói của FlexStyle luôn tuân thủ tiêu chuẩn cao: sản phẩm được gấp gọn gàng, bọc trong giấy pelure chống ẩm, đặt trong hộp carton cứng cáp hoặc túi niêm phong chuyên dụng (tùy loại sản phẩm). 
+              Điều này đảm bảo <strong>{product.TenSP}</strong> đến tay bạn vẫn giữ nguyên form dáng và không bị ảnh hưởng bởi các tác động bên ngoài trong quá trình vận chuyển.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Chúng tôi hợp tác với các đối tác vận chuyển hàng đầu như Giao Hàng Nhanh (GHN), Giao Hàng Tiết Kiệm (GHTK), Viettel Post... để phủ sóng giao hàng toàn quốc. 
+              Bạn có thể dễ dàng tra cứu hành trình đơn hàng mọi lúc mọi nơi. 
+              Nếu có bất kỳ vấn đề gì phát sinh trong quá trình vận chuyển (hàng chậm, thất lạc...), đội ngũ CSKH của FlexStyle sẽ chủ động làm việc với đơn vị vận chuyển để giải quyết thỏa đáng nhất cho bạn.
+            </p>
+          </div>
+        </section>
+
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <aside aria-label="Related Products">
