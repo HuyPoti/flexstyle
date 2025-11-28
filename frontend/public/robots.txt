@@ -1,6 +1,23 @@
 User-agent: *
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_next/
 Allow: /
 
+Disallow: /admin/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /orders/
+Disallow: /voucher/
+Disallow: /operator/
+Disallow: /supplier/
+Disallow: /business/
+Disallow: /customer-service/
+Disallow: /_next/
+Disallow: /api/
+# allow static assets so search engines can index CSS/JS/images used by pages
+Allow: /_next/static/
+Allow: /_next/image/
+Allow: /favicon.ico
+Allow: /public/
+
+# polite crawling
+Crawl-delay: 5
