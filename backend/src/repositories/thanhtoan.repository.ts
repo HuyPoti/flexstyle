@@ -6,23 +6,9 @@ import { CreatePaymentDto } from 'src/thanhtoan/dto/thanhtoan.dto';
 export class ThanhtoanRepository {
   constructor(private readonly prismaService: PrismaService) {}
   // Các phương thức truy cập dữ liệu liên quan đến thanh toán sẽ được định nghĩa ở đây
-  async findPaymentDetailById(MaTTDH: string) {
-    return await this.prismaService.tHANHTOAN.findUnique({
-      where: { MaTTDH },
-      include: {
-        DONHANG: {
-          include: {
-            CHITIETSANPHAM: {
-              include: {
-                SANPHAM: true,
-              },
-            },
-            SUKIENUUDAI: true,
-            VOUCHER: true,
-          },
-        },
-      TAIKHOAN: true,
-      },
+  async findPaymentDetailById(MaDH: string) {
+    return await this.prismaService.tHANHTOAN.findFirst({
+      where: { MaDH },
 
       // Thêm các bảng liên quan khác nếu cần
     });
