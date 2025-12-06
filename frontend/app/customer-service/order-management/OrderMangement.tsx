@@ -10,7 +10,7 @@ import {
   ScanEye,
   TriangleAlert,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import axios from "axios";
 
@@ -33,8 +33,49 @@ export default function OrderManagementPage({
   const [selectedOrder, setSelectedOrder] = useState<OrderResponse | null>(
     null
   );
+  const [maGDCache, setMaGDCache] = useState<{ [key: string]: string }>({});
   // const [filteredOrders, setFilteredOrders] = useState<OrderResponse[]>(order);
   const supabase = createClient();
+
+  const getMaGD = async (orderId: string) => {
+    if (maGDCache[orderId]) {
+      return maGDCache[orderId]; // Return cached value
+    }
+    try {
+      const request = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/thanhtoan/${orderId}`
+      );
+      const data = await request.json();
+      console.log("Fetched MaGD:", data.MaGD);
+      setMaGDCache((prev) => ({ ...prev, [orderId]: data.MaGD })); // Cache the result
+      return data.MaGD;
+    } catch (error) {
+      console.error("Error fetching MaGD:", error);
+      return "N/A";
+    }
+  };
+
+  useEffect(() => {
+    const fetchAllMaGD = async () => {
+      const newCache = { ...maGDCache };
+      for (const order of orders) {
+        if (!newCache[order.MaDH]) {
+          try {
+            const request = await fetch(
+              `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/thanhtoan/${order.MaDH}`
+            );
+            const data = await request.json();
+            newCache[order.MaDH] = data.MaGD;
+          } catch (error) {
+            console.error("Error fetching MaGD for order:", order.MaDH, error);
+          }
+        }
+      }
+      setMaGDCache(newCache);
+    };
+
+    fetchAllMaGD();
+  }, [orders]);
 
   // Cache các trang đã tải
   const [orderCache, setOrderCache] = useState<{
@@ -390,6 +431,7 @@ export default function OrderManagementPage({
         <table className="min-w-full text-sm border-t border-gray-200">
           <thead className="bg-gray-100 text-gray-700 font-medium">
             <tr>
+              <th className="px-4 py-2">Mã giao dịch</th>
               <th className="px-4 py-2">Mã đơn</th>
               <th className="px-4 py-2">Sản phẩm</th>
               <th className="px-4 py-2">Số lượng</th>
@@ -403,6 +445,9 @@ export default function OrderManagementPage({
           <tbody>
             {pageOrder.map((order: OrderResponse) => (
               <tr key={order.MaDH} className="border-b">
+                <td className="px-4 py-2">
+                  {maGDCache[order.MaDH] || "Loading..."}
+                </td>
                 <td className="px-4 py-2">{order.MaDH}</td>
                 <td className="px-4 py-2">
                   {order.CHITIETSANPHAM.SANPHAM.TenSP}
