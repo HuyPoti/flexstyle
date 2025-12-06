@@ -37,23 +37,23 @@ export default function OrderManagementPage({
   // const [filteredOrders, setFilteredOrders] = useState<OrderResponse[]>(order);
   const supabase = createClient();
 
-  const getMaGD = async (orderId: string) => {
-    if (maGDCache[orderId]) {
-      return maGDCache[orderId]; // Return cached value
-    }
-    try {
-      const request = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/thanhtoan/${orderId}`
-      );
-      const data = await request.json();
-      console.log("Fetched MaGD:", data.MaGD);
-      setMaGDCache((prev) => ({ ...prev, [orderId]: data.MaGD })); // Cache the result
-      return data.MaGD;
-    } catch (error) {
-      console.error("Error fetching MaGD:", error);
-      return "N/A";
-    }
-  };
+  // const getMaGD = async (orderId: string) => {
+  //   if (maGDCache[orderId]) {
+  //     return maGDCache[orderId]; // Return cached value
+  //   }
+  //   try {
+  //     const request = await fetch(
+  //       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/thanhtoan/${orderId}`
+  //     );
+  //     const data = await request.json();
+  //     console.log("Fetched MaGD:", data.MaGD);
+  //     setMaGDCache((prev) => ({ ...prev, [orderId]: data.MaGD })); // Cache the result
+  //     return data.MaGD;
+  //   } catch (error) {
+  //     console.error("Error fetching MaGD:", error);
+  //     return "N/A";
+  //   }
+  // };
 
   useEffect(() => {
     const fetchAllMaGD = async () => {
